@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سياسة الخصوصية — مصروف</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
+                   'Cairo', 'Tajawal', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #1a1a1a;
+      background: #ffffff;
+      padding: 24px 20px 48px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: right;
+    }
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+    .meta { font-size: 0.85rem; color: #666; margin-bottom: 32px; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 12px; }
+    ul { padding-right: 20px; margin-bottom: 12px; list-style-position: inside; }
+    li { margin-bottom: 6px; }
+    a { color: #007aff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: none; border-top: 1px solid #e5e5e5; margin: 24px 0; }
+    strong { font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #121212; color: #e0e0e0; }
+      hr { border-top-color: #2e2e2e; }
+      .meta { color: #999; }
+      a { color: #4da6ff; }
+    }
+  </style>
+</head>
+<body>
+  <h1>سياسة الخصوصية — مصروف</h1>
+  <p class="meta">آخر تحديث: 6 مايو 2026</p>
+
+  <p>تلتزم مصروف ("نحن" أو "لنا") بحماية خصوصيتك.
+  توضّح هذه السياسة البيانات التي نجمعها وكيفية استخدامها.</p>
+
+  <hr />
+
+  <h2>البيانات التي نجمعها</h2>
+  <ul>
+    <li><strong>معلومات الحساب:</strong> عنوان البريد الإلكتروني، والاسم المعروض، واسم المستخدم،
+      وتُجمع عند التسجيل أو تسجيل الدخول.</li>
+    <li><strong>البيانات المالية:</strong> المصروفات، والدخل، والميزانيات، والفواتير، والفئات
+      التي تنشئها داخل التطبيق. هذه البيانات ملك لك.</li>
+    <li><strong>صورة الملف الشخصي:</strong> تُرفع بناءً على طلبك وتُخزَّن في Firebase Storage.</li>
+    <li><strong>تقارير الأعطال:</strong> تشخيصات تقنية مجهولة المصدر تُرسَل إلى Firebase
+      Crashlytics لمساعدتنا في إصلاح الأخطاء.</li>
+  </ul>
+
+  <hr />
+
+  <h2>كيفية تخزين بياناتك</h2>
+  <ul>
+    <li><strong>على جهازك:</strong> تُخزَّن جميع البيانات المالية محلياً في قاعدة بيانات SQLite
+      مشفّرة (Drift).</li>
+    <li><strong>في السحابة:</strong> تتم مزامنة بياناتك مع Google Firebase Firestore حتى تتمكن
+      من الوصول إليها عبر أجهزة متعددة. أنت وحدك من يمكنه قراءة بياناتك أو كتابتها —
+      تفرض قواعد أمان Firestore عزلاً صارماً لكل مستخدم.</li>
+  </ul>
+
+  <hr />
+
+  <h2>خدمات الجهات الخارجية</h2>
+  <ul>
+    <li><strong>Google Firebase</strong> (المصادقة، Firestore، التخزين، Crashlytics)<br />
+      سياسة الخصوصية: <a href="https://firebase.google.com/support/privacy" target="_blank">
+        firebase.google.com/support/privacy</a></li>
+  </ul>
+
+  <hr />
+
+  <h2>ما لا نفعله</h2>
+  <ul>
+    <li>لا نبيع بياناتك الشخصية أو المالية أو نؤجرها أو نشاركها مع أطراف ثالثة.</li>
+    <li>لا نستخدم بياناتك المالية للإعلانات.</li>
+    <li>لا نخزّن بياناتك على خوادمنا الخاصة.</li>
+  </ul>
+
+  <hr />
+
+  <h2>حذف البيانات</h2>
+  <p>يمكنك حذف حسابك في أي وقت من <strong>الملف الشخصي ← معلومات الحساب</strong>.
+  يؤدي حذف حسابك إلى إزالة جميع بياناتك نهائياً من Firestore،
+  وFirebase Storage، وجهازك المحلي.</p>
+
+  <hr />
+
+  <h2>تواصل معنا</h2>
+  <p>هل لديك أسئلة؟ راسلنا على <a href="mailto:support@masrof.dev">support@masrof.dev</a></p>
+</body>
+</html>
