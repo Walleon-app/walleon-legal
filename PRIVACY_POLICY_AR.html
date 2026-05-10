@@ -6,95 +6,374 @@
   <title>سياسة الخصوصية — مصروف</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:        #5A8F8A;
+      --brand-light:  #e8f4f3;
+      --text:         #1a1a1a;
+      --text-muted:   #555;
+      --border:       #e5e5e5;
+      --bg:           #ffffff;
+      --card-bg:      #f8fafb;
+      --notice-bg:    #fff8e6;
+      --notice-line:  #f0c040;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text:        #e8e8e8;
+        --text-muted:  #aaa;
+        --border:      #2e2e2e;
+        --bg:          #111111;
+        --card-bg:     #1a1a1a;
+        --brand-light: #1a2e2d;
+        --notice-bg:   #2a2200;
+        --notice-line: #7a6000;
+      }
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue',
-                   'Cairo', 'Tajawal', Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.8;
-      color: #1a1a1a;
-      background: #ffffff;
-      padding: 24px 20px 48px;
-      max-width: 680px;
-      margin: 0 auto;
+      line-height: 1.85;
+      color: var(--text);
+      background: var(--bg);
+      direction: rtl;
       text-align: right;
     }
-    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
-    .meta { font-size: 0.85rem; color: #666; margin-bottom: 32px; }
-    h2 { font-size: 1.1rem; font-weight: 600; margin: 28px 0 10px; }
-    p { margin-bottom: 12px; }
-    ul { padding-right: 20px; margin-bottom: 12px; list-style-position: inside; }
-    li { margin-bottom: 6px; }
-    a { color: #007aff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    hr { border: none; border-top: 1px solid #e5e5e5; margin: 24px 0; }
-    strong { font-weight: 600; }
-    @media (prefers-color-scheme: dark) {
-      body { background: #121212; color: #e0e0e0; }
-      hr { border-top-color: #2e2e2e; }
-      .meta { color: #999; }
-      a { color: #4da6ff; }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
     }
+
+    /* ── Header ── */
+    .header {
+      border-bottom: 3px solid var(--brand);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .header .meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Notice ── */
+    .notice {
+      background: var(--notice-bg);
+      border-right: 4px solid var(--notice-line);
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 28px;
+      font-size: 0.92rem;
+    }
+
+    /* ── Sections ── */
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 36px 0 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      gap: 10px;
+    }
+
+    .num {
+      background: var(--brand);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 20px 0 8px;
+    }
+
+    p  { margin-bottom: 14px; }
+    ul { padding-right: 22px; padding-left: 0; margin-bottom: 14px; }
+    li { margin-bottom: 8px; }
+
+    a  { color: var(--brand); text-decoration: none; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+
+    strong { font-weight: 600; }
+
+    /* ── Info card ── */
+    .card {
+      background: var(--brand-light);
+      border: 1px solid var(--brand);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+    }
+
+    /* ── Third-party list ── */
+    .vendors { list-style: none; padding: 0; }
+
+    .vendors li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .vendors li:last-child { border-bottom: none; }
+    .vendor-name    { font-weight: 600; }
+    .vendor-purpose { font-size: 0.87rem; color: var(--text-muted); }
+    .vendor-link    { font-size: 0.83rem; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang-link {
+      font-size: 0.85rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .lang-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>سياسة الخصوصية — مصروف</h1>
-  <p class="meta">آخر تحديث: 6 مايو 2026</p>
+<div class="page">
 
-  <p>تلتزم مصروف ("نحن" أو "لنا") بحماية خصوصيتك.
-  توضّح هذه السياسة البيانات التي نجمعها وكيفية استخدامها.</p>
+  <div class="header">
+    <h1>سياسة الخصوصية</h1>
+    <p class="meta">
+      <strong>مصروف — Masrof</strong> &nbsp;·&nbsp;
+      تاريخ السريان: <strong>10 مايو 2026</strong> &nbsp;·&nbsp;
+      الإصدار: <strong>1.2</strong>
+    </p>
+  </div>
 
-  <hr />
+  <div class="notice">
+    <strong>التزامنا الجوهري:</strong>
+    بياناتك <strong>المالية الحساسة</strong> — المعاملات، الميزانيات، التصنيفات، والمدفوعات
+    المتكررة — <strong>مخزّنة محلياً وبأمان على جهازك</strong> ولا تُرسَل إلى خوادمنا أبداً.
+    أما بيانات الحساب والمصادقة فيعالجها Google Firebase كما هو موضّح أدناه.
+  </div>
 
-  <h2>البيانات التي نجمعها</h2>
+  <p>
+    يلتزم تطبيق مصروف ("نحن"، "تطبيقنا") بحماية خصوصيتك والشفافية الكاملة حول طريقة التعامل
+    مع بياناتك. تسري هذه السياسة على تطبيق مصروف للجوال على نظامي iOS وAndroid.
+    باستخدامك للتطبيق، فإنك توافق على الممارسات الموضّحة في هذه السياسة.
+  </p>
+
+  <!-- 1 -->
+  <h2><span class="num">1</span> البيانات التي نجمعها</h2>
+
+  <h3>1.1 معلومات الحساب</h3>
+  <p>عند التسجيل أو تسجيل الدخول، نجمع:</p>
   <ul>
-    <li><strong>معلومات الحساب:</strong> عنوان البريد الإلكتروني، والاسم المعروض، واسم المستخدم،
-      وتُجمع عند التسجيل أو تسجيل الدخول.</li>
-    <li><strong>البيانات المالية:</strong> المصروفات، والدخل، والميزانيات، والفواتير، والفئات
-      التي تنشئها داخل التطبيق. هذه البيانات ملك لك.</li>
-    <li><strong>صورة الملف الشخصي:</strong> تُرفع بناءً على طلبك وتُخزَّن في Firebase Storage.</li>
-    <li><strong>تقارير الأعطال:</strong> تشخيصات تقنية مجهولة المصدر تُرسَل إلى Firebase
-      Crashlytics لمساعدتنا في إصلاح الأخطاء.</li>
+    <li><strong>البريد الإلكتروني</strong> — لتحديد هويتك والوصول إلى حسابك.</li>
+    <li><strong>الاسم المعروض</strong> — يظهر داخل التطبيق.</li>
+    <li><strong>صورة الملف الشخصي</strong> — فقط إذا اخترت رفعها طوعاً؛ تُخزَّن في Firebase Storage.</li>
+    <li><strong>مزوّد تسجيل الدخول</strong> — البريد الإلكتروني، أو Google، أو Apple.</li>
+  </ul>
+  <p>
+    تُعالَج هذه البيانات عبر <strong>Google Firebase Authentication</strong> وتخضع لسياسة
+    خصوصية Google (انظر القسم 6).
+  </p>
+
+  <h3>1.2 البيانات المالية — مخزّنة محلياً وبأمان على جهازك</h3>
+  <div class="card">
+    <p style="margin:0;">
+      <strong>بياناتك المالية الحساسة مخزّنة محلياً وبأمان على جهازك</strong> في قاعدة بيانات
+      SQLite مشفّرة. تشمل: المعاملات المالية (مصاريف ودخل)، تخصيصات الميزانية، تصنيفات الإنفاق،
+      الفواتير القادمة، المعاملات المتكررة، وبيانات وسائل الدفع (انظر 1.4).
+      هذه البيانات <strong>لا تُرسَل إلى خوادمنا أبداً</strong>.
+    </p>
+  </div>
+  <p>
+    إذا فعّلت خاصية <strong>المزامنة السحابية</strong> (حيثما تتوفر)، تُنسخ بياناتك المالية
+    احتياطياً إلى Google Firebase Firestore مع قواعد أمان صارمة — أنت الوحيد الذي يمكنه
+    الوصول إلى سجلاتك.
+  </p>
+
+  <h3>1.3 بيانات الاستخدام والإحصاءات</h3>
+  <p>
+    نستخدم <strong>Firebase Analytics</strong> لجمع بيانات مجهولة ومجمّعة حول طريقة استخدام
+    التطبيق. لا تتضمن هذه البيانات أي معلومات مالية ولا يمكن ربطها بك شخصياً.
+  </p>
+
+  <h3>1.4 خاصية المحفظة — بيانات وسائل الدفع</h3>
+  <p>إذا ربطت بطاقة دفع، نخزّن ما يلي <strong>محلياً على جهازك فقط</strong>:</p>
+  <ul>
+    <li>آخر أربعة أرقام من رقم البطاقة</li>
+    <li>تاريخ انتهاء الصلاحية (بصيغة MM/YY)</li>
+    <li>الرمز البريدي للفوترة</li>
+    <li>اسم مزوّد الدفع</li>
+  </ul>
+  <p>
+    لا نجمع أو نخزّن أو نرسل أرقام البطاقات الكاملة أو رموز CVV أو بيانات الدخول المصرفية.
+    تتم معالجة المدفوعات حصرياً عبر <strong>Stripe</strong> المعتمد بمعيار PCI-DSS المستوى الأول
+    (انظر القسم 6).
+  </p>
+
+  <h3>1.5 تقارير الأعطال والتشخيص</h3>
+  <p>
+    نستخدم <strong>Firebase Crashlytics</strong> لاستقبال تقارير الأعطال التلقائية. تحتوي على
+    معلومات تقنية فقط: طراز الجهاز، إصدار نظام التشغيل، إصدار التطبيق، ومسار الخطأ.
+    لا تحتوي على أي بيانات مالية.
+  </p>
+
+  <h3>1.6 أذونات الجهاز</h3>
+  <ul>
+    <li><strong>البيومترية (معرف الوجه / بصمة الإصبع)</strong> — لقفل التطبيق. تُعالَج كلياً
+      بواسطة نظام التشغيل ولا تغادر جهازك.</li>
+    <li><strong>الكاميرا / مكتبة الصور</strong> — لإرفاق صور الفواتير أو تعيين صورة الملف الشخصي.
+      الصور مخزّنة محلياً إلا عند رفع صورة الملف الشخصي.</li>
+    <li><strong>الوصول إلى الإنترنت</strong> — مطلوب للمصادقة والمزامنة وتقارير الأعطال.</li>
   </ul>
 
-  <hr />
-
-  <h2>كيفية تخزين بياناتك</h2>
+  <!-- 2 -->
+  <h2><span class="num">2</span> البيانات التي لا نجمعها</h2>
   <ul>
-    <li><strong>على جهازك:</strong> تُخزَّن جميع البيانات المالية محلياً في قاعدة بيانات SQLite
-      مشفّرة (Drift).</li>
-    <li><strong>في السحابة:</strong> تتم مزامنة بياناتك مع Google Firebase Firestore حتى تتمكن
-      من الوصول إليها عبر أجهزة متعددة. أنت وحدك من يمكنه قراءة بياناتك أو كتابتها —
-      تفرض قواعد أمان Firestore عزلاً صارماً لكل مستخدم.</li>
+    <li>لا نجمع موقعك الجغرافي.</li>
+    <li>لا نطلع على جهات اتصالك أو رسائلك أو تطبيقاتك الأخرى.</li>
+    <li>لا نجمع رقم بطاقتك الكامل أو رمز CVV أو بيانات الدخول المصرفية.</li>
+    <li>لا نعرض إعلانات ولا نشارك بياناتك مع شبكات الإعلانات.</li>
+    <li>لا نبيع بياناتك لأي طرف ثالث بأي شكل من الأشكال.</li>
   </ul>
 
-  <hr />
-
-  <h2>خدمات الجهات الخارجية</h2>
+  <!-- 3 -->
+  <h2><span class="num">3</span> كيف نستخدم معلوماتك</h2>
   <ul>
-    <li><strong>Google Firebase</strong> (المصادقة، Firestore، التخزين، Crashlytics)<br />
-      سياسة الخصوصية: <a href="https://firebase.google.com/support/privacy" target="_blank">
-        firebase.google.com/support/privacy</a></li>
+    <li>لإنشاء حسابك والتحقق من هويتك.</li>
+    <li>لتمكين الوصول عبر أجهزة متعددة (إن كانت المزامنة مفعّلة).</li>
+    <li>لتحديد الأعطال وإصلاحها عبر تقارير Crashlytics.</li>
+    <li>لفهم الميزات الأكثر قيمةً وتطوير التطبيق باستمرار.</li>
+    <li>للامتثال للقوانين والأنظمة المعمول بها.</li>
   </ul>
 
-  <hr />
-
-  <h2>ما لا نفعله</h2>
+  <!-- 4 -->
+  <h2><span class="num">4</span> الأمان</h2>
   <ul>
-    <li>لا نبيع بياناتك الشخصية أو المالية أو نؤجرها أو نشاركها مع أطراف ثالثة.</li>
-    <li>لا نستخدم بياناتك المالية للإعلانات.</li>
-    <li>لا نخزّن بياناتك على خوادمنا الخاصة.</li>
+    <li>تُخزَّن البيانات المالية في قاعدة بيانات SQLite مشفّرة على الجهاز.</li>
+    <li>تُحفظ رموز المصادقة في المخزن الآمن عبر <strong>Flutter Secure Storage</strong>.</li>
+    <li>التحقق بالبيومترية متاح لمنع الوصول غير المصرّح به.</li>
+    <li>يُخفى محتوى التطبيق عند وضعه في الخلفية.</li>
+    <li>تُحمى بيانات Firestore بقواعد أمان صارمة لكل مستخدم.</li>
+    <li>جميع البيانات أثناء النقل مشفّرة عبر TLS/HTTPS.</li>
+  </ul>
+  <p>
+    لا توجد طريقة تخزين أو نقل إلكتروني آمنة بنسبة 100%. بينما نطبّق حمايات قوية،
+    لا يمكننا ضمان الأمان المطلق.
+  </p>
+
+  <!-- 5 -->
+  <h2><span class="num">5</span> الاحتفاظ بالبيانات وحذفها</h2>
+  <p>
+    تُحتفظ <strong>بيانات الحساب</strong> طالما حسابك نشطاً. عند الحذف، تُزال جميع البيانات
+    من Firebase نهائياً خلال 30 يوماً.
+  </p>
+  <p>
+    تُحذف <strong>البيانات المالية المحلية</strong> عند إلغاء تثبيت التطبيق أو استخدام
+    "حذف جميع البيانات" في الإعدادات.
+  </p>
+  <p>
+    تُحتفظ <strong>بيانات الإحصاءات وتقارير الأعطال</strong> لدى Google Firebase لمدة تصل إلى
+    14 شهراً.
+  </p>
+  <p>لحذف حسابك: <strong>الملف الشخصي ← معلومات الحساب ← حذف الحساب</strong>.</p>
+
+  <!-- 6 -->
+  <h2><span class="num">6</span> خدمات الطرف الثالث</h2>
+  <p>تعالج الخدمات التالية بيانات نيابةً عنا، كل منها وفق سياسة خصوصيتها الخاصة:</p>
+  <ul class="vendors">
+    <li>
+      <span class="vendor-name">Google Firebase (Auth, Firestore, Storage, Crashlytics, Analytics)</span>
+      <span class="vendor-purpose">مصادقة الحساب، المزامنة الاختيارية، تقارير الأعطال، وإحصاءات الاستخدام.</span>
+      <span class="vendor-link"><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></span>
+    </li>
+    <li>
+      <span class="vendor-name">Google Sign-In</span>
+      <span class="vendor-purpose">طريقة تسجيل دخول اختيارية عبر حساب Google.</span>
+      <span class="vendor-link"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></span>
+    </li>
+    <li>
+      <span class="vendor-name">Sign in with Apple</span>
+      <span class="vendor-purpose">طريقة تسجيل دخول اختيارية عبر Apple ID.</span>
+      <span class="vendor-link"><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a></span>
+    </li>
+    <li>
+      <span class="vendor-name">Stripe</span>
+      <span class="vendor-purpose">معالجة المدفوعات. معتمد PCI-DSS المستوى الأول. لا نتعامل مع بيانات البطاقة الخام ولا نخزّنها.</span>
+      <span class="vendor-link"><a href="https://stripe.com/privacy" target="_blank" rel="noopener">stripe.com/privacy</a></span>
+    </li>
   </ul>
 
-  <hr />
+  <!-- 7 -->
+  <h2><span class="num">7</span> خصوصية الأطفال</h2>
+  <p>
+    لا يستهدف تطبيق مصروف الأطفال دون سن 13 عاماً. لا نجمع عن علم أي معلومات شخصية من الأطفال.
+    إذا كنت ولياً للأمر وتعتقد أن طفلك قدّم لنا معلومات شخصية، تواصل معنا وسنحذف تلك المعلومات فوراً.
+  </p>
 
-  <h2>حذف البيانات</h2>
-  <p>يمكنك حذف حسابك في أي وقت من <strong>الملف الشخصي ← معلومات الحساب</strong>.
-  يؤدي حذف حسابك إلى إزالة جميع بياناتك نهائياً من Firestore،
-  وFirebase Storage، وجهازك المحلي.</p>
+  <!-- 8 -->
+  <h2><span class="num">8</span> حقوقك</h2>
+  <ul>
+    <li><strong>حق الوصول:</strong> طلب نسخة من بياناتك الشخصية.</li>
+    <li><strong>حق التصحيح:</strong> تحديث أو تصحيح معلوماتك.</li>
+    <li><strong>حق الحذف:</strong> طلب حذف حسابك وجميع بياناتك.</li>
+    <li><strong>حق نقل البيانات:</strong> تصدير بياناتك المالية عبر خاصية تصدير CSV في التطبيق.</li>
+    <li><strong>سحب الموافقة:</strong> تعطيل جمع بيانات الإحصاءات في أي وقت عبر إعدادات جهازك.</li>
+  </ul>
+  <p>
+    للتواصل: <a href="mailto:masrofsupport@gmail.com">masrofsupport@gmail.com</a>
+  </p>
 
-  <hr />
+  <!-- 9 -->
+  <h2><span class="num">9</span> التعديلات على هذه السياسة</h2>
+  <p>
+    قد نحدّث هذه السياسة دورياً. سنعدّل "تاريخ السريان" أعلاه وسنُخطر المستخدمين بأي
+    تغييرات جوهرية عبر إشعار داخل التطبيق. استمرار استخدامك للتطبيق يعني قبولك للسياسة المحدّثة.
+  </p>
 
-  <h2>تواصل معنا</h2>
-  <p>هل لديك أسئلة؟ راسلنا على <a href="mailto:support@masrof.dev">support@masrof.dev</a></p>
+  <!-- 10 -->
+  <h2><span class="num">10</span> التواصل معنا</h2>
+  <p>
+    <strong>البريد الإلكتروني:</strong>
+    <a href="mailto:masrofsupport@gmail.com">masrofsupport@gmail.com</a>
+  </p>
+
+  <div class="footer">
+    <span>مصروف — Masrof &nbsp;·&nbsp; سياسة الخصوصية الإصدار 1.2 &nbsp;·&nbsp; 10 مايو 2026</span>
+    <a href="PRIVACY_POLICY.html" class="lang-link">← Read in English</a>
+  </div>
+
+</div>
 </body>
 </html>

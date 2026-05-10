@@ -1,98 +1,373 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Masrof</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:        #5A8F8A;
+      --brand-light:  #e8f4f3;
+      --text:         #1a1a1a;
+      --text-muted:   #555;
+      --border:       #e5e5e5;
+      --bg:           #ffffff;
+      --card-bg:      #f8fafb;
+      --notice-bg:    #fff8e6;
+      --notice-line:  #f0c040;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text:        #e8e8e8;
+        --text-muted:  #aaa;
+        --border:      #2e2e2e;
+        --bg:          #111111;
+        --card-bg:     #1a1a1a;
+        --brand-light: #1a2e2d;
+        --notice-bg:   #2a2200;
+        --notice-line: #7a6000;
+      }
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.7;
-      color: #1a1a1a;
-      background: #ffffff;
-      padding: 24px 20px 48px;
-      max-width: 680px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .page {
+      max-width: 720px;
       margin: 0 auto;
+      padding: 40px 24px 72px;
     }
-    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
-    .meta { font-size: 0.85rem; color: #666; margin-bottom: 32px; }
-    h2 { font-size: 1.1rem; font-weight: 600; margin: 28px 0 10px; }
-    p { margin-bottom: 12px; }
-    ul { padding-left: 20px; margin-bottom: 12px; }
-    li { margin-bottom: 6px; }
-    a { color: #007aff; text-decoration: none; }
+
+    /* ── Header ── */
+    .header {
+      border-bottom: 3px solid var(--brand);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .header .meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Notice ── */
+    .notice {
+      background: var(--notice-bg);
+      border-left: 4px solid var(--notice-line);
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 28px;
+      font-size: 0.92rem;
+    }
+
+    /* ── Sections ── */
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 36px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .num {
+      background: var(--brand);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 20px 0 8px;
+    }
+
+    p  { margin-bottom: 14px; }
+    ul { padding-left: 22px; margin-bottom: 14px; }
+    li { margin-bottom: 8px; }
+
+    a  { color: var(--brand); text-decoration: none; word-break: break-all; }
     a:hover { text-decoration: underline; }
-    hr { border: none; border-top: 1px solid #e5e5e5; margin: 24px 0; }
+
     strong { font-weight: 600; }
-    @media (prefers-color-scheme: dark) {
-      body { background: #121212; color: #e0e0e0; }
-      hr { border-top-color: #2e2e2e; }
-      .meta { color: #999; }
-      a { color: #4da6ff; }
+
+    /* ── Info card ── */
+    .card {
+      background: var(--brand-light);
+      border: 1px solid var(--brand);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
     }
+
+    /* ── Third-party list ── */
+    .vendors { list-style: none; padding: 0; }
+
+    .vendors li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .vendors li:last-child { border-bottom: none; }
+    .vendor-name    { font-weight: 600; }
+    .vendor-purpose { font-size: 0.87rem; color: var(--text-muted); }
+    .vendor-link    { font-size: 0.83rem; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang-link {
+      font-size: 0.85rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .lang-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy — Masrof</h1>
-  <p class="meta">Last Updated: May 6, 2026</p>
+<div class="page">
 
-  <p>Masrof ("we", "our", or "us") is committed to protecting your privacy.
-  This policy explains what data we collect and how we use it.</p>
+  <div class="header">
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      <strong>Masrof — مصروف</strong> &nbsp;·&nbsp;
+      Effective: <strong>May 10, 2026</strong> &nbsp;·&nbsp;
+      Version: <strong>1.2</strong>
+    </p>
+  </div>
 
-  <hr />
+  <div class="notice">
+    <strong>Our core commitment:</strong>
+    Your <strong>sensitive financial data</strong> — transactions, budgets, categories, and
+    recurring entries — <strong>is stored locally and securely on your device</strong> and is
+    never transmitted to our servers. Account and authentication data is handled by Google
+    Firebase as described below.
+  </div>
 
-  <h2>Data We Collect</h2>
+  <p>
+    Masrof ("we", "our", or "us") respects your privacy and is committed to full transparency
+    about how your data is handled. This policy applies to the Masrof mobile application on
+    iOS and Android. By using the app you agree to the practices described here.
+  </p>
+
+  <!-- 1 -->
+  <h2><span class="num">1</span> Information We Collect</h2>
+
+  <h3>1.1 Account Information</h3>
+  <p>When you register or sign in, we collect:</p>
   <ul>
-    <li><strong>Account information:</strong> email address, display name, and username,
-      collected when you register or sign in.</li>
-    <li><strong>Financial data:</strong> expenses, income, budgets, bills, and categories
-      you create inside the app. This data belongs to you.</li>
-    <li><strong>Profile photo:</strong> uploaded at your request and stored in Firebase Storage.</li>
-    <li><strong>Crash reports:</strong> anonymous technical diagnostics sent to Firebase
-      Crashlytics to help us fix bugs.</li>
+    <li><strong>Email address</strong> — to identify your account.</li>
+    <li><strong>Display name</strong> — shown inside the app.</li>
+    <li><strong>Profile photo</strong> — only if you voluntarily upload one; stored in Firebase Storage.</li>
+    <li><strong>Authentication provider</strong> — email/password, Google, or Apple.</li>
+  </ul>
+  <p>
+    This data is processed by <strong>Google Firebase Authentication</strong> and is subject to
+    Google's privacy practices (see Section 6).
+  </p>
+
+  <h3>1.2 Financial Data — Stored Locally and Securely on Your Device</h3>
+  <div class="card">
+    <p style="margin:0;">
+      <strong>Your sensitive financial data is stored locally and securely on your device</strong>
+      in an encrypted SQLite database. This includes: expense and income transactions, budget
+      allocations, spending categories, upcoming bills, recurring transactions, and linked
+      payment method metadata (see 1.4). This data is <strong>never transmitted to our servers</strong>.
+    </p>
+  </div>
+  <p>
+    If you enable <strong>Cloud Sync</strong> (where available), your financial data is additionally
+    backed up to Google Firebase Firestore under strict per-user security rules — only you can
+    access your own records.
+  </p>
+
+  <h3>1.3 Usage and Analytics Data</h3>
+  <p>
+    We use <strong>Firebase Analytics</strong> to collect anonymous, aggregated usage data —
+    such as which screens are visited most. This contains no financial information and cannot
+    be linked back to you personally.
+  </p>
+
+  <h3>1.4 Wallet Feature — Payment Method Metadata</h3>
+  <p>If you link a payment card, we store the following <strong>locally on your device only</strong>:</p>
+  <ul>
+    <li>Last four digits of the card number</li>
+    <li>Card expiry date (MM/YY format)</li>
+    <li>Billing ZIP code</li>
+    <li>Payment provider name</li>
+  </ul>
+  <p>
+    We do not collect, store, or transmit full card numbers, CVV codes, or banking credentials.
+    Payment processing is handled exclusively by <strong>Stripe</strong>, a PCI-DSS Level 1
+    certified processor (see Section 6).
+  </p>
+
+  <h3>1.5 Crash and Diagnostic Reports</h3>
+  <p>
+    <strong>Firebase Crashlytics</strong> automatically sends crash reports when the app encounters
+    an unexpected error. Reports contain technical data only: device model, OS version, app version,
+    and error stack trace. They contain no financial data.
+  </p>
+
+  <h3>1.6 Device Permissions</h3>
+  <ul>
+    <li><strong>Biometrics (Face ID / Fingerprint)</strong> — to lock the app. Processed entirely
+      by the OS; biometric data never leaves your device.</li>
+    <li><strong>Camera / Photo Library</strong> — to attach invoice images to transactions or set
+      a profile photo. Images stored locally unless you upload a profile photo.</li>
+    <li><strong>Network access</strong> — required for authentication, cloud sync, and crash reporting.</li>
   </ul>
 
-  <hr />
-
-  <h2>How We Store Your Data</h2>
+  <!-- 2 -->
+  <h2><span class="num">2</span> Information We Do Not Collect</h2>
   <ul>
-    <li><strong>On your device:</strong> all financial data is stored locally in an encrypted
-      SQLite database (Drift).</li>
-    <li><strong>In the cloud:</strong> your data is synced to Google Firebase Firestore so you
-      can access it across multiple devices. Only you can read or write your
-      own data — Firestore security rules enforce strict per-user isolation.</li>
+    <li>We do not collect your location.</li>
+    <li>We do not access your contacts, messages, or other apps.</li>
+    <li>We do not collect full card numbers, CVV codes, or banking credentials.</li>
+    <li>We do not serve advertisements or share data with ad networks.</li>
+    <li>We do not sell your data to any third party under any circumstances.</li>
   </ul>
 
-  <hr />
-
-  <h2>Third-Party Services</h2>
+  <!-- 3 -->
+  <h2><span class="num">3</span> How We Use Your Information</h2>
   <ul>
-    <li><strong>Google Firebase</strong> (Auth, Firestore, Storage, Crashlytics)<br />
-      Privacy policy: <a href="https://firebase.google.com/support/privacy" target="_blank">
-        firebase.google.com/support/privacy</a></li>
+    <li>To create and authenticate your account.</li>
+    <li>To enable cross-device access (if cloud sync is active).</li>
+    <li>To identify and fix bugs via crash reports.</li>
+    <li>To understand which features are most valuable and improve the app.</li>
+    <li>To comply with applicable laws and regulations.</li>
   </ul>
 
-  <hr />
-
-  <h2>We Do Not</h2>
+  <!-- 4 -->
+  <h2><span class="num">4</span> Security</h2>
   <ul>
-    <li>Sell, rent, or share your personal or financial data with third parties.</li>
-    <li>Use your financial data for advertising.</li>
-    <li>Store your data on our own servers.</li>
+    <li>Financial data is stored in an encrypted SQLite database on-device.</li>
+    <li>Authentication tokens are stored in the device's secure enclave via <strong>Flutter Secure Storage</strong>.</li>
+    <li>Biometric authentication prevents unauthorized app access.</li>
+    <li>Screen content is hidden when the app is placed in the background.</li>
+    <li>Firestore data (if sync is enabled) is protected by strict per-user security rules.</li>
+    <li>All data in transit is encrypted via TLS/HTTPS.</li>
+  </ul>
+  <p>
+    No method of electronic storage or transmission is 100% secure. While we implement strong
+    protections, we cannot guarantee absolute security.
+  </p>
+
+  <!-- 5 -->
+  <h2><span class="num">5</span> Data Retention and Deletion</h2>
+  <p>
+    <strong>Account data</strong> is retained while your account is active. On deletion, all
+    associated data in Firebase Auth, Firestore, and Storage is permanently removed within 30 days.
+  </p>
+  <p>
+    <strong>Local financial data</strong> is deleted when you uninstall the app or use
+    "Delete All Data" in the app settings.
+  </p>
+  <p>
+    <strong>Analytics and crash data</strong> is retained by Google Firebase for up to 14 months.
+  </p>
+  <p>To delete your account: <strong>Profile → Account Info → Delete Account</strong>.</p>
+
+  <!-- 6 -->
+  <h2><span class="num">6</span> Third-Party Services</h2>
+  <p>The following services process data on our behalf, each under their own privacy policy:</p>
+  <ul class="vendors">
+    <li>
+      <span class="vendor-name">Google Firebase (Auth, Firestore, Storage, Crashlytics, Analytics)</span>
+      <span class="vendor-purpose">Account authentication, optional data sync, crash reporting, and usage analytics.</span>
+      <span class="vendor-link"><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></span>
+    </li>
+    <li>
+      <span class="vendor-name">Google Sign-In</span>
+      <span class="vendor-purpose">Optional sign-in using your Google account.</span>
+      <span class="vendor-link"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></span>
+    </li>
+    <li>
+      <span class="vendor-name">Sign in with Apple</span>
+      <span class="vendor-purpose">Optional sign-in using your Apple ID.</span>
+      <span class="vendor-link"><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a></span>
+    </li>
+    <li>
+      <span class="vendor-name">Stripe</span>
+      <span class="vendor-purpose">Payment processing. PCI-DSS Level 1 certified. We never handle or store raw card data.</span>
+      <span class="vendor-link"><a href="https://stripe.com/privacy" target="_blank" rel="noopener">stripe.com/privacy</a></span>
+    </li>
   </ul>
 
-  <hr />
+  <!-- 7 -->
+  <h2><span class="num">7</span> Children's Privacy</h2>
+  <p>
+    Masrof is not directed at children under the age of 13. We do not knowingly collect personal
+    information from children. If you are a parent or guardian and believe your child has provided
+    personal information, contact us at the address below and we will delete it promptly.
+  </p>
 
-  <h2>Data Deletion</h2>
-  <p>You may delete your account at any time from <strong>Profile → Account Info</strong>.
-  Deleting your account permanently removes all your data from Firestore,
-  Firebase Storage, and your local device.</p>
+  <!-- 8 -->
+  <h2><span class="num">8</span> Your Rights</h2>
+  <ul>
+    <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+    <li><strong>Rectification:</strong> Update or correct inaccurate information.</li>
+    <li><strong>Erasure:</strong> Request deletion of your account and all associated data.</li>
+    <li><strong>Portability:</strong> Export your financial data via the CSV Export feature in the app.</li>
+    <li><strong>Withdraw Consent:</strong> Disable analytics collection at any time in your device settings.</li>
+  </ul>
+  <p>To exercise any right: <a href="mailto:masrofsupport@gmail.com">masrofsupport@gmail.com</a></p>
 
-  <hr />
+  <!-- 9 -->
+  <h2><span class="num">9</span> Changes to This Policy</h2>
+  <p>
+    We may update this policy periodically. The "Effective" date above reflects the latest revision.
+    Material changes will be communicated via an in-app notice. Continued use of the app after
+    changes are posted constitutes acceptance of the updated policy.
+  </p>
 
-  <h2>Contact</h2>
-  <p>Questions? Email us at <a href="mailto:support@masrof.dev">support@masrof.dev</a></p>
+  <!-- 10 -->
+  <h2><span class="num">10</span> Contact</h2>
+  <p><strong>Email:</strong> <a href="mailto:masrofsupport@gmail.com">masrofsupport@gmail.com</a></p>
+
+  <div class="footer">
+    <span>Masrof — مصروف &nbsp;·&nbsp; Privacy Policy v1.2 &nbsp;·&nbsp; May 10, 2026</span>
+    <a href="PRIVACY_POLICY_AR.html" class="lang-link">اقرأ بالعربية →</a>
+  </div>
+
+</div>
 </body>
 </html>
