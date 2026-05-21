@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Deletion — Walleon</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:        #5A8F8A;
+      --brand-light:  #e8f4f3;
+      --text:         #1a1a1a;
+      --text-muted:   #555;
+      --border:       #e5e5e5;
+      --bg:           #ffffff;
+      --card-bg:      #f8fafb;
+      --notice-bg:    #fff8e6;
+      --notice-line:  #f0c040;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text:        #e8e8e8;
+        --text-muted:  #aaa;
+        --border:      #2e2e2e;
+        --bg:          #111111;
+        --card-bg:     #1a1a1a;
+        --brand-light: #1a2e2d;
+        --notice-bg:   #2a2200;
+        --notice-line: #7a6000;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
+    }
+
+    .header {
+      border-bottom: 3px solid var(--brand);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .header .meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 36px 0 10px;
+    }
+
+    p  { margin-bottom: 14px; }
+    ul { padding-left: 22px; margin-bottom: 14px; }
+    li { margin-bottom: 8px; }
+
+    a  { color: var(--brand); text-decoration: none; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+
+    strong { font-weight: 600; }
+
+    .card {
+      background: var(--brand-light);
+      border: 1px solid var(--brand);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+    }
+
+    .footer {
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang-link {
+      font-size: 0.85rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .lang-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Data Deletion</h1>
+    <p class="meta"><strong>Walleon</strong></p>
+  </div>
+
+  <p>
+    You can request deletion of your Walleon app data without necessarily closing your
+    full account.
+  </p>
+
+  <h2>What Can Be Deleted</h2>
+  <ul>
+    <li>Expenses and income records</li>
+    <li>Transactions</li>
+    <li>Wallets and linked payment method metadata</li>
+    <li>Budgets and spending categories</li>
+    <li>Upcoming bills and recurring entries</li>
+    <li>Profile information</li>
+  </ul>
+
+  <h2>How to Request</h2>
+  <p>
+    Email <a href="mailto:support@tarseedapp.com">support@tarseedapp.com</a> with the
+    subject <strong>"Data Deletion Request"</strong>.
+  </p>
+  <p>Please include:</p>
+  <ul>
+    <li>The email address associated with your Walleon account.</li>
+    <li>A description of the specific data you want deleted.</li>
+  </ul>
+  <p>
+    Requests are processed after we verify account ownership. Verified requests are
+    completed within 30 days.
+  </p>
+
+  <div class="card">
+    <p style="margin:0;">
+      <strong>Note:</strong> Certain data may be retained for a limited period as required
+      by applicable law or for fraud prevention and security purposes.
+    </p>
+  </div>
+
+  <h2>Full Account Deletion</h2>
+  <p>
+    To close your entire Walleon account and remove all associated data, visit our
+    <a href="DELETE_ACCOUNT.html">Account Deletion page</a>.
+  </p>
+
+  <div class="footer">
+    <span>Walleon &nbsp;·&nbsp; Data Deletion</span>
+    <a href="PRIVACY_POLICY.html" class="lang-link">← Privacy Policy</a>
+  </div>
+
+</div>
+</body>
+</html>
