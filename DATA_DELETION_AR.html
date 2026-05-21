@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Account Deletion — Walleon</title>
+  <title>حذف البيانات — Walleon</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,8 +15,6 @@
       --border:       #e5e5e5;
       --bg:           #ffffff;
       --card-bg:      #f8fafb;
-      --notice-bg:    #fff8e6;
-      --notice-line:  #f0c040;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -27,17 +25,17 @@
         --bg:          #111111;
         --card-bg:     #1a1a1a;
         --brand-light: #1a2e2d;
-        --notice-bg:   #2a2200;
-        --notice-line: #7a6000;
       }
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, 'Cairo', 'Tajawal', Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.85;
       color: var(--text);
       background: var(--bg);
+      direction: rtl;
+      text-align: right;
     }
 
     .page {
@@ -72,7 +70,7 @@
     }
 
     p  { margin-bottom: 14px; }
-    ul { padding-left: 22px; margin-bottom: 14px; }
+    ul { padding-right: 22px; padding-left: 0; margin-bottom: 14px; }
     li { margin-bottom: 8px; }
 
     a  { color: var(--brand); text-decoration: none; word-break: break-all; }
@@ -113,66 +111,55 @@
 <div class="page">
 
   <div class="header">
-    <h1>Account Deletion</h1>
+    <h1>حذف البيانات</h1>
     <p class="meta"><strong>Walleon</strong></p>
   </div>
 
   <p>
-    You can permanently delete your Walleon account using the in-app option or by submitting
-    an email request.
+    يمكنك طلب حذف بيانات تطبيق Walleon دون الحاجة إلى إغلاق حسابك بالكامل.
   </p>
 
-  <h2>Option 1 — Delete from the App</h2>
-  <p>
-    If the option is available on your device, go to
-    <strong>Profile → Account Info → Delete Account</strong> and follow the on-screen steps.
-    Your account and all associated data are deleted immediately.
-  </p>
-
-  <h2>Option 2 — Request by Email</h2>
-  <p>
-    If you cannot access the in-app option, email us at
-    <a href="mailto:support@tarseedapp.com">support@tarseedapp.com</a> with the subject
-    <strong>"Account Deletion Request"</strong>.
-  </p>
-  <p>Please include:</p>
+  <h2>ما الذي يمكن حذفه؟</h2>
   <ul>
-    <li>The email address associated with your Walleon account.</li>
+    <li>سجلات المصروفات والدخل</li>
+    <li>المعاملات المالية</li>
+    <li>المحافظ وبيانات وسائل الدفع المرتبطة</li>
+    <li>الميزانيات وفئات الإنفاق</li>
+    <li>الفواتير القادمة والإدخالات المتكررة</li>
+    <li>معلومات الملف الشخصي</li>
+  </ul>
+
+  <h2>كيفية تقديم الطلب</h2>
+  <p>
+    أرسل بريداً إلكترونياً إلى
+    <a href="mailto:support@tarseedapp.com">support@tarseedapp.com</a>
+    بعنوان <strong>"Data Deletion Request"</strong>.
+  </p>
+  <p>يُرجى تضمين:</p>
+  <ul>
+    <li>عنوان البريد الإلكتروني المرتبط بحساب Walleon الخاص بك.</li>
+    <li>وصف للبيانات المحددة التي تريد حذفها.</li>
   </ul>
   <p>
-    Requests are processed after we verify account ownership. Verified requests are
-    completed within 30 days.
+    تُعالَج الطلبات بعد التحقق من ملكية الحساب. تُكتمل الطلبات الموثّقة خلال 30 يوماً.
   </p>
-
-  <h2>What Gets Deleted</h2>
-  <p>Deleting your account permanently removes:</p>
-  <ul>
-    <li>Your account profile and authentication credentials</li>
-    <li>All expenses, income records, and transactions</li>
-    <li>Wallets, budgets, and spending categories</li>
-    <li>Upcoming bills and recurring entries</li>
-    <li>Linked payment method metadata</li>
-  </ul>
 
   <div class="card">
     <p style="margin:0;">
-      <strong>Note:</strong> Certain data may be retained for a limited period as required
-      by applicable law or for fraud prevention and security purposes.
+      <strong>ملاحظة:</strong> قد تُحتفظ ببعض البيانات لفترة محدودة وفقاً لما يقتضيه
+      القانون المعمول به أو لأغراض منع الاحتيال والأمان.
     </p>
   </div>
 
-  <h2>Data Deletion Only</h2>
+  <h2>حذف الحساب بالكامل</h2>
   <p>
-    To delete specific app data without closing your account, visit our
-    <a href="DATA_DELETION.html">Data Deletion page</a>.
+    لإغلاق حسابك في Walleon وحذف جميع البيانات المرتبطة به، تفضل بزيارة
+    <a href="DELETE_ACCOUNT_AR.html">صفحة حذف الحساب</a>.
   </p>
 
   <div class="footer">
-    <span>Walleon &nbsp;·&nbsp; Account Deletion</span>
-    <div style="display:flex;gap:16px;">
-      <a href="DELETE_ACCOUNT_AR.html" class="lang-link">اقرأ بالعربية →</a>
-      <a href="PRIVACY_POLICY.html" class="lang-link">← Privacy Policy</a>
-    </div>
+    <span>Walleon &nbsp;·&nbsp; حذف البيانات</span>
+    <a href="DATA_DELETION.html" class="lang-link">← Read in English</a>
   </div>
 
 </div>

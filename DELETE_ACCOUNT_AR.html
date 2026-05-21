@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حذف الحساب — Walleon</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:        #5A8F8A;
+      --brand-light:  #e8f4f3;
+      --text:         #1a1a1a;
+      --text-muted:   #555;
+      --border:       #e5e5e5;
+      --bg:           #ffffff;
+      --card-bg:      #f8fafb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text:        #e8e8e8;
+        --text-muted:  #aaa;
+        --border:      #2e2e2e;
+        --bg:          #111111;
+        --card-bg:     #1a1a1a;
+        --brand-light: #1a2e2d;
+      }
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, 'Cairo', 'Tajawal', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text);
+      background: var(--bg);
+      direction: rtl;
+      text-align: right;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
+    }
+
+    .header {
+      border-bottom: 3px solid var(--brand);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .header .meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 36px 0 10px;
+    }
+
+    p  { margin-bottom: 14px; }
+    ul { padding-right: 22px; padding-left: 0; margin-bottom: 14px; }
+    li { margin-bottom: 8px; }
+
+    a  { color: var(--brand); text-decoration: none; word-break: break-all; }
+    a:hover { text-decoration: underline; }
+
+    strong { font-weight: 600; }
+
+    .card {
+      background: var(--brand-light);
+      border: 1px solid var(--brand);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+    }
+
+    .footer {
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang-link {
+      font-size: 0.85rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .lang-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>حذف الحساب</h1>
+    <p class="meta"><strong>Walleon</strong></p>
+  </div>
+
+  <p>
+    يمكنك حذف حساب Walleon نهائياً من داخل التطبيق أو عبر تقديم طلب بالبريد الإلكتروني.
+  </p>
+
+  <h2>الخيار الأول — الحذف من داخل التطبيق</h2>
+  <p>
+    إذا كان الخيار متاحاً على جهازك، اذهب إلى
+    <strong>الملف الشخصي ← معلومات الحساب ← حذف الحساب</strong>
+    واتبع الخطوات الظاهرة على الشاشة. يُحذف حسابك وجميع بياناته فوراً.
+  </p>
+
+  <h2>الخيار الثاني — الطلب عبر البريد الإلكتروني</h2>
+  <p>
+    إذا لم تتمكن من الوصول إلى خيار الحذف داخل التطبيق، أرسل بريداً إلكترونياً إلى
+    <a href="mailto:support@tarseedapp.com">support@tarseedapp.com</a>
+    بعنوان <strong>"Account Deletion Request"</strong>.
+  </p>
+  <p>يُرجى تضمين:</p>
+  <ul>
+    <li>عنوان البريد الإلكتروني المرتبط بحساب Walleon الخاص بك.</li>
+  </ul>
+  <p>
+    تُعالَج الطلبات بعد التحقق من ملكية الحساب. تُكتمل الطلبات الموثّقة خلال 30 يوماً.
+  </p>
+
+  <h2>ما الذي يُحذف؟</h2>
+  <p>يؤدي حذف حسابك إلى الحذف النهائي لـ:</p>
+  <ul>
+    <li>ملفك الشخصي وبيانات المصادقة</li>
+    <li>جميع سجلات المصروفات والدخل والمعاملات</li>
+    <li>المحافظ والميزانيات وفئات الإنفاق</li>
+    <li>الفواتير القادمة والإدخالات المتكررة</li>
+    <li>بيانات وسائل الدفع المرتبطة</li>
+  </ul>
+
+  <div class="card">
+    <p style="margin:0;">
+      <strong>ملاحظة:</strong> قد تُحتفظ ببعض البيانات لفترة محدودة وفقاً لما يقتضيه
+      القانون المعمول به أو لأغراض منع الاحتيال والأمان.
+    </p>
+  </div>
+
+  <h2>حذف البيانات فقط</h2>
+  <p>
+    إذا أردت حذف بيانات تطبيق محددة دون إغلاق حسابك، تفضل بزيارة
+    <a href="DATA_DELETION_AR.html">صفحة حذف البيانات</a>.
+  </p>
+
+  <div class="footer">
+    <span>Walleon &nbsp;·&nbsp; حذف الحساب</span>
+    <a href="DELETE_ACCOUNT.html" class="lang-link">← Read in English</a>
+  </div>
+
+</div>
+</body>
+</html>
