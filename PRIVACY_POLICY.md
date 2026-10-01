@@ -1,5 +1,5 @@
 # Privacy Policy — Walleon
-> Last Updated: May 20, 2026
+> Last Updated: October 1, 2026
 
 Walleon ("we", "our", or "us") is committed to protecting your privacy.
 This policy explains what data we collect and how we use it.
@@ -77,6 +77,9 @@ server by Walleon.
 You may delete your account at any time from **Profile → Account Info**.
 Deleting your account permanently removes all your data from Firestore,
 Firebase Storage, and your local device.
+
+We keep a short deletion record (your email address and name) for up to 90 days
+after deletion to confirm it and answer support requests; it is then deleted automatically.
 
 ---
 
