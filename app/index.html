@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Get Walleon</title>
+<script>
+  // QR target: send each phone to its own store; everything else to the download page.
+  (function () {
+    var ua = navigator.userAgent;
+    var isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var url = isIOS ? 'https://apps.apple.com/us/app/walleon/id6772874528'
+      : /Android/.test(ua) ? 'https://play.google.com/store/apps/details?id=com.tarseed.app'
+      : '/download/';
+    location.replace(url);
+  })();
+</script>
+</head>
+<body>
+<p><a href="https://apps.apple.com/us/app/walleon/id6772874528">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.tarseed.app">Google Play</a> · <a href="/download/">walleon.app/download</a></p>
+</body>
+</html>
