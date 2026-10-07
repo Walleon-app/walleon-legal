@@ -1,6 +1,6 @@
 # Walleon — ASO Metadata (Final Production)
 
-**Version:** 1.2 — May 18, 2026  
+**Version:** 1.3 — October 7, 2026 (removed claims the app does not support: "never sent to our servers", "no account required", Gulf currency support)  
 **Support:** support@tarseedapp.com  
 
 ---
@@ -41,14 +41,14 @@ Walleon هو تطبيق إدارة المصاريف والميزانية الش�
 شاهد مصاريفك بمخططات بيانية واضحة وجميلة. تقارير شهرية، مقارنات بين الفئات، ومؤشرات الإنفاق — كلها في صفحة واحدة. حين ترى بياناتك أمامك، تتخذ قرارات أفضل.
 
 ────────────────────────────────────────
-🔒 بياناتك المالية الحساسة مخزّنة محلياً وبأمان على جهازك
+🔒 بياناتك المالية خاصة بك ومحمية
 ────────────────────────────────────────
-بياناتك المالية الحساسة — من معاملات ومصاريف وميزانيات — مخزّنة محلياً وبأمان على جهازك ولا تُرسَل إلى خوادمنا أبداً. في زمن تبيع فيه كثير من التطبيقات بياناتك، Walleon يقف على الجانب الآخر.
+بياناتك المالية الحساسة — من معاملات ومصاريف وميزانيات — محفوظة على جهازك ومتزامنة بأمان مع حسابك الخاص، فتجدها كما هي إذا غيّرت هاتفك. لا نبيع بياناتك ولا نشاركها مع المعلنين. في زمن تبيع فيه كثير من التطبيقات بياناتك، Walleon يقف على الجانب الآخر.
 
 ────────────────────────────────────────
 🌍 مصمّم للعالم العربي — من الخليج إلى المغرب
 ────────────────────────────────────────
-واجهة عربية كاملة من اليمين إلى اليسار. دعم عملات الخليج والوطن العربي: الريال السعودي، الدرهم الإماراتي، الدينار الكويتي، الريال القطري، الدينار البحريني، الريال العُماني، والجنيه المصري.
+واجهة عربية كاملة من اليمين إلى اليسار. صُمّم لمستخدمي السعودية والإمارات والكويت وقطر والبحرين وعُمان ومصر والعالم العربي.
 
 ────────────────────────────────────────
 لمن صُمّم Walleon؟
@@ -86,7 +86,7 @@ Take full control of your money — track expenses & budget like a pro.
 ```
 Walleon — The Personal Finance App Built for the Arab World.
 
-Most budgeting apps were designed for Western markets and bolted on Arabic as an afterthought. Walleon was built the other way around: native Arabic interface, Gulf currencies, and a workflow that matches how people in the Middle East actually manage money.
+Most budgeting apps were designed for Western markets and bolted on Arabic as an afterthought. Walleon was built the other way around: native right-to-left Arabic interface and a workflow that matches how people in the Middle East actually manage money.
 
 No excuses. No complexity. Just clarity over where your money goes.
 
@@ -106,14 +106,14 @@ Allocate your salary across spending categories at the start of each month. Set 
 Clean, intuitive charts show exactly where your money goes. Monthly breakdowns, category comparisons, trend analysis — all in one dashboard. Data you can actually act on is data worth having.
 
 ────────────────────────────────────────
-🔒 Your Sensitive Financial Data Is Stored Locally and Securely on Your Device
+🔒 Your Financial Data Stays Private and Secure
 ────────────────────────────────────────
-Your sensitive financial data — transactions, budgets, and categories — is stored locally and securely on your device and is never transmitted to our servers. No mandatory cloud account required to use the core features. No data sold to advertisers. In a category where most apps monetize your information, this is the line we do not cross.
+Your sensitive financial data — transactions, budgets, and categories — is saved on your device and synced securely to your own private account, so it is still there when you switch phones. Your data is never sold or shared with advertisers. In a category where most apps monetize your information, this is the line we do not cross.
 
 ────────────────────────────────────────
 🌍 Built for the Gulf & Arab Market — Not Translated for It
 ────────────────────────────────────────
-Full right-to-left Arabic interface. Support for Gulf and Arab currencies: Saudi Riyal (SAR), UAE Dirham (AED), Kuwaiti Dinar (KWD), Qatari Riyal (QAR), Bahraini Dinar (BHD), Omani Rial (OMR), and Egyptian Pound (EGP). Designed for users in Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman, Egypt, and the wider Arab world.
+Full right-to-left Arabic interface. Designed for users in Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman, Egypt, and the wider Arab world.
 
 ────────────────────────────────────────
 Who Is Walleon For?
