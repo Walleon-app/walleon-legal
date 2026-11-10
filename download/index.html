@@ -2,452 +2,445 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Download Walleon — expenses & budgets in Arabic, Russian and English</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Download Walleon — expenses &amp; budgets in Arabic, Russian and English</title>
 <meta name="description" content="Walleon is a simple expense and budget app made for Arabic and Russian speakers. Fully in Arabic (RTL), Russian and English.">
-<meta name="color-scheme" content="light dark">
-<link rel="icon" href="assets/walleon-icon-192.png">
-<link rel="apple-touch-icon" href="assets/walleon-icon-192.png">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="a/walleon-icon-192.png">
+<link rel="apple-touch-icon" href="a/walleon-icon-192.png">
 <link rel="canonical" href="https://walleon.app/download/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://walleon.app/download/">
 <meta property="og:title" content="Walleon — your money, in your language">
 <meta property="og:description" content="A simple expense and budget app made for Arabic and Russian speakers. Fully in Arabic (RTL), Russian and English.">
-<meta property="og:image" content="https://walleon.app/download/assets/walleon-icon-512.png">
+<meta property="og:image" content="https://walleon.app/download/a/walleon-icon-512.png">
 <meta name="twitter:card" content="summary">
 <meta name="apple-itunes-app" content="app-id=6772874528">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
+/* Concept: one real 3D iPhone (WebGL) lives on a fixed canvas and flies between anchor boxes as you scroll:
+   hero (right) -> features (left, turns per step) -> languages (right, spins per language) -> hidden at the final call.
+   Bands alternate deep teal / pale mint / deep teal / bright mint so the page has rhythm. */
 :root{
-  --teal:#2F7E79; --teal-2:#438883; --teal-soft:#E3F1EF;
-  --hero:linear-gradient(160deg,#3E8D87 0%,#2F7E79 38%,#2A6F6A 100%);
-  --income:#2B9A66; --expense:#D2553F; --warn:#E07B00;
-  --bg:#F7FAF9; --card:#FFFFFF; --ink:#1B2B29;
-  --muted:#5F6E69; /* brand muted #76857F darkened for AA on small text */
-  --line:#E6EEEC; --accent:#2F7E79;
-  --shadow:0 10px 30px -12px rgba(20,60,55,.35);
-  --shadow-lg:0 40px 80px -30px rgba(10,45,42,.55),0 12px 30px -16px rgba(10,45,42,.35);
-  --header-bg:rgba(247,250,249,.86);
-  --frame:#101917;
-  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --font-ar:"Inter","SF Arabic","Noto Sans Arabic","Geeza Pro","Segoe UI","Tahoma",system-ui,sans-serif;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --hero:linear-gradient(160deg,#1F4F4B,#14302E);
-    --teal-soft:#1D2D2A;
-    --bg:#0F1716; --card:#18221F; --ink:#E7F0EE; --muted:#8FA3A0; --line:#24312E;
-    --accent:#7FD1C9;
-    --income:#5CC795; --expense:#F08C78; --warn:#F2A94A;
-    --shadow:0 10px 30px -12px rgba(0,0,0,.6);
-    --shadow-lg:0 40px 80px -30px rgba(0,0,0,.8),0 12px 30px -16px rgba(0,0,0,.6);
-    --header-bg:rgba(15,23,22,.86);
-    --frame:#050908;
-  }
+  --night:#031512; --deep:#0B3A36; --teal:#2F7E79; --mint:#2DF0C8; --lime:#C8FF6B; --mint-2:#BFEDE7; --paper:#EEF7F5; --ink:#0D2624;
+  --on-dark:#EAF5F3; --muted-dark:#A9C6C2; --muted-light:#4A6662; --line-dark:rgba(45,240,200,.26); --line-light:rgba(13,38,36,.12);
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-ar:"IBM Plex Sans Arabic","IBM Plex Sans","Geeza Pro","Segoe UI",Tahoma,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55;
-  -webkit-font-smoothing:antialiased;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;max-width:100%}
+body{margin:0;max-width:100vw;background:var(--night);color:var(--on-dark);font-family:var(--font);font-size:17px;line-height:1.6;overflow-x:clip}
 html[lang="ar"] body{font-family:var(--font-ar)}
 img{display:block;max-width:100%}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:10px}
-.hero :focus-visible{outline-color:#fff}
-.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:10px}
+.in{width:min(1180px,100%);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:4;pointer-events:none}
 
-/* ---------- Header ---------- */
-.site-header{position:sticky;top:0;z-index:100;background:var(--header-bg);
-  -webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);
-  border-bottom:1px solid var(--line)}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
-.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.01em;min-height:44px}
-.brand img{width:32px;height:32px;border-radius:8px}
-.lang{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
-.lang button{font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:0;cursor:pointer;
-  min-height:40px;min-width:44px;padding:0 12px;border-radius:999px}
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(3,21,18,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line-dark)}
+header .in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;text-decoration:none}
+.brand img{width:34px;height:34px;border-radius:9px}
+.lang{display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line-dark)}
+.lang button{font:inherit;font-size:14px;font-weight:600;color:var(--muted-dark);background:none;border:0;cursor:pointer;min-height:40px;min-width:44px;padding:0 14px;border-radius:999px}
 .lang button[lang="ar"]{font-family:var(--font-ar)}
-.lang button[aria-pressed="true"]{background:var(--teal);color:#fff}
-@media (prefers-color-scheme:dark){.lang button[aria-pressed="true"]{background:#2A6F6A}}
-.lang button:hover:not([aria-pressed="true"]){color:var(--ink)}
+.lang button[aria-pressed="true"]{background:var(--mint);color:var(--night)}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;z-index:1;padding-bottom:64px}
-.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:calc(100% - 152px);background:var(--hero);
-  border-radius:0 0 40% 40% / 0 0 22% 22%;z-index:-1}
-.hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:start;padding-top:88px}
-/* Bottom padding keeps the QR above the curve: teal ends 88px above the grid bottom, and the curve
-   rises up to ~125px more at the column's outer edge (less at wide widths). */
-.hero-copy{color:#fff;padding-top:24px;padding-bottom:236px}
-.stage{align-self:end}
-@media (min-width:1100px){
-  .hero-copy{padding-bottom:184px}
-  .stage .phone{width:clamp(260px,24vw,300px)}
-}
-h1{font-size:clamp(40px,5.6vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:800;margin:0 0 16px;text-wrap:balance}
+.band{position:relative}
+.band>.in>*{min-width:0}
+.band>.in{position:relative}
+
+/* Hero */
+#hero{overflow:hidden;background:linear-gradient(135deg,#02261F 0%,#04544A 52%,#0A8F7E 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.b1{width:560px;height:560px;left:-140px;top:-160px;background:#10D9B4;opacity:.55}
+.b2{width:520px;height:520px;right:-120px;bottom:-140px;background:#B6F24C;opacity:.30;animation-delay:-6s}
+@keyframes drift{to{transform:translate(70px,50px) scale(1.15)}}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;height:calc(100vh - 68px - 32px);min-height:360px;max-height:820px;padding-block:16px;box-sizing:content-box}
+h1{font-size:clamp(40px,4.8vw,72px);line-height:1;letter-spacing:-.04em;font-weight:700;margin:0 0 22px;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(100deg,#2DF0C8 10%,#C8FF6B 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html[lang="ar"] h1{letter-spacing:0;line-height:1.25}
-html[lang="ru"] h1{font-size:clamp(36px,5vw,60px)}
-.sub{font-size:clamp(17px,1.5vw,20px);line-height:1.6;max-width:30em;margin:0;color:rgba(255,255,255,.94);text-wrap:pretty}
-
-.badges{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:40px}
+html[lang="ru"] h1{font-size:clamp(36px,5vw,72px)}
+.rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.d1{animation-delay:.12s}.d2{animation-delay:.24s}.d3{animation-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}}
+.kicker{display:inline-block;margin:0 0 20px;padding:7px 16px;border-radius:999px;background:rgba(200,255,107,.14);border:1px solid rgba(200,255,107,.5);color:var(--lime);font-weight:600;font-size:14px;letter-spacing:.02em}
+.trust{margin:18px 0 0;color:#D3E8E5;font-size:15px}
+.trust::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);margin-inline-end:10px}
+.sub{font-size:clamp(16px,1.3vw,19px);max-width:29em;margin:0;color:#D3E8E5;text-wrap:pretty}
+.badges{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:26px}
 .badges a{display:block;border-radius:8px}
-/* Both badges show a 50px-tall black badge. Apple's SVG has no clear space; Google's PNG does
-   (EN/AR: badge = 64% of image height, RU: 72.8%), so the PNG is scaled up and its padding cancelled with negative margins. */
 .badge-as img{height:50px;width:auto}
 .badge-gp img{height:78px;width:auto;margin:-14px}
 html[lang="ru"] .badge-gp img{height:69px;margin:-9.4px -1.1px}
-
-/* QR: compact, sits under the badges inside the teal hero (desktop only) */
-.qr-card{display:flex;align-items:center;gap:16px;margin-top:24px}
-.qr-tile{position:relative;background:#fff;padding:8px;border-radius:14px;flex:none}
-.qr-tile img.qr{width:104px;height:104px}
-.qr-logo{position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);background:#fff;border-radius:7px;padding:3px}
+.qr-card{display:flex;align-items:center;gap:16px;margin-top:20px}
+.qr-tile{position:relative;background:#fff;padding:8px;border-radius:14px;flex:none;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+.qr-tile .qr{width:92px;height:92px}
+.qr-logo{position:absolute;left:50%;top:50%;width:27px;height:27px;transform:translate(-50%,-50%);background:#fff;border-radius:7px;padding:3px}
 .qr-logo img{width:100%;height:100%;border-radius:5px}
-.qr-label{font-weight:600;font-size:15px;max-width:10em;line-height:1.4;margin:0;color:#fff}
-.qr-label svg{display:block;margin-bottom:6px}
+.qr-label{margin:0;font-weight:600;font-size:15px;max-width:11em;line-height:1.4;color:#D3E8E5}
+.anchor{position:relative}
+#a-hero{height:100%;max-height:100%}
+.chip{position:absolute;z-index:5;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:18px;background:rgba(4,28,24,.82);border:1px solid rgba(45,240,200,.55);color:#fff;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 20px 40px -18px rgba(0,0,0,.6);animation:bob 6s ease-in-out infinite;translate:calc(var(--mx,0)*-18px) calc(var(--my,0)*-12px)}
+.chip small{display:block;color:#BFEDE7;font-size:13px;line-height:1.3}
+.chip b{display:block;white-space:nowrap;font-size:22px;line-height:1.2;letter-spacing:-.01em}
+.chip .pill{margin-inline-start:6px;padding:6px 14px;border-radius:999px;background:var(--lime);color:var(--night);font-weight:700;font-size:13px}
+.chip-a{inset-inline-start:0;top:14%;max-width:46%}
+.chip-b{inset-inline-end:0;bottom:10%;animation-delay:-3s;max-width:62%;flex-wrap:wrap}
+@keyframes bob{50%{transform:translateY(-9px)}}
+.fb{display:none}
+html.nogl .fb{display:block;position:absolute;inset:6% 20%;width:60%;height:88%;object-fit:cover;border-radius:28px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
 
-/* Phone */
-.stage{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:16px;perspective:1600px}
-.phone{--rx:4deg;--ry:-12deg;width:min(260px,70vw);padding:10px;border-radius:48px;background:var(--frame);
-  box-shadow:var(--shadow-lg),inset 0 0 0 1.5px rgba(255,255,255,.08);
-  transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-html[dir="rtl"] .phone{--ry:12deg}
-/* iPhone screen: the shots have no status bar, so a status-bar strip (tinted to the shot's top colour)
-   holds the Dynamic Island above the image; the image itself is never covered or cropped. */
-.screen{position:relative;container-type:inline-size;border-radius:38px;overflow:hidden;background:var(--status,#1A9A8F);padding-top:14%}
-.screen::before{content:"";position:absolute;top:3.2cqw;left:50%;width:31cqw;height:8.6cqw;transform:translateX(-50%);
-  border-radius:99px;background:#000}
-.screen img{width:100%;height:auto;aspect-ratio:1320/2868;object-fit:contain;background:#fff}
-.chip{background:var(--card);color:var(--ink);border-radius:20px;box-shadow:var(--shadow);padding:16px;width:100%;max-width:200px;min-width:0;font-size:14px;line-height:1.35;
-  animation:float 6s ease-in-out infinite}
-.chip-a{justify-self:end;align-self:start;margin-top:88px}
-.chip-b{justify-self:start;align-self:end;margin-bottom:120px;animation-delay:-3s}
-.chip .k{color:var(--muted);font-weight:500;display:flex;align-items:center;gap:8px}
-.chip .v{font-weight:700;font-size:15px;margin-top:4px}
-.bar{height:8px;border-radius:99px;background:var(--line);margin-top:12px;overflow:hidden}
-.bar b{display:block;height:100%;width:17%;border-radius:inherit;background:var(--teal)}
-html[dir="rtl"] .bar b{margin-inline-start:0}
-.chip-row{display:flex;align-items:center;gap:12px}
-.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
-.ico.exp{background:rgba(210,85,63,.12);color:var(--expense)}
-.amt{margin-inline-start:auto;font-weight:700;font-size:19px;color:var(--expense);white-space:nowrap}
-@keyframes float{50%{transform:translateY(-8px)}}
-
-/* ---------- Features ---------- */
-.section{padding:96px 0}
-.eyebrow{color:var(--accent);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px}
+/* Features */
+#features{background:linear-gradient(165deg,#0BAA93 0%,#067466 55%,#054D44 100%);color:#fff;padding-block:110px 40px}
+.eyebrow{color:var(--lime);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
 html[lang="ar"] .eyebrow{letter-spacing:0}
-h2{font-size:clamp(30px,3.6vw,44px);line-height:1.12;letter-spacing:-.025em;font-weight:800;margin:0 0 56px;max-width:18em;text-wrap:balance}
-html[lang="ar"] h2{letter-spacing:0;line-height:1.35}
-.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.feature{background:var(--card);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
-.feature-art{position:relative;background:var(--teal-soft);padding:40px 24px;display:flex;justify-content:center;isolation:isolate}
-.feature-art::before{content:"";position:absolute;inset:0 0 auto;height:46%;background:var(--hero);border-radius:0 0 40% 40% / 0 0 30% 30%;z-index:-1;opacity:.95}
-.mini{width:min(184px,60%);padding:6px;border-radius:30px;background:var(--frame);box-shadow:var(--shadow-lg)}
-.mini .screen{border-radius:24px}
-.feature-body{padding:24px 32px 32px}
-.feature h3{font-size:21px;line-height:1.25;letter-spacing:-.015em;margin:0 0 8px;font-weight:700}
-html[lang="ar"] .feature h3{letter-spacing:0}
-.feature p{margin:0;color:var(--muted);font-size:16px}
+h2{font-size:clamp(30px,4vw,54px);line-height:1.08;letter-spacing:-.03em;font-weight:700;margin:0 0 16px;text-wrap:balance;max-width:16em}
+html[lang="ar"] h2{letter-spacing:0;line-height:1.3}
+.show{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start;margin-top:24px}
+#a-show{position:sticky;top:11vh;height:78vh}
+.steps{display:grid}
+.step{display:flex;flex-direction:column;justify-content:center;width:100%;text-align:start;font:inherit;color:inherit;background:none;border:0;border-top:1px solid rgba(255,255,255,.28);padding:32px 8px;min-height:74vh;cursor:pointer;opacity:.3;transition:opacity .5s,transform .5s;transform:translateY(8px)}
+.step.on{opacity:1;transform:none}
+.step h3{margin:0 0 12px;font-size:clamp(26px,3vw,40px);line-height:1.12;letter-spacing:-.02em}
+.step p{margin:0;color:rgba(255,255,255,.88);max-width:26em;font-size:18px}
+.step .n{display:inline-block;align-self:flex-start;font-weight:700;color:var(--night);background:var(--lime);font-size:13px;padding:3px 12px;border-radius:999px;margin-bottom:16px}
 
-/* ---------- Privacy ---------- */
-.privacy{display:flex;align-items:center;gap:24px;padding:32px;background:var(--card);border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--line)}
-.privacy .ico{width:56px;height:56px;border-radius:16px;background:var(--teal-soft);color:var(--accent)}
-.privacy p{margin:0;font-size:clamp(18px,1.8vw,22px);font-weight:600;line-height:1.4;letter-spacing:-.01em}
-html[lang="ar"] .privacy p{letter-spacing:0}
+/* Languages */
+#languages{background:radial-gradient(45% 55% at 18% 30%,rgba(45,240,200,.30),transparent 70%),radial-gradient(40% 50% at 92% 85%,rgba(200,255,107,.16),transparent 70%),#04120F;padding-block:110px}
+.lang-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+#a-langs{height:min(78vh,760px)}
+.lead{color:var(--muted-dark);max-width:30em;margin:0 0 28px;font-size:18px}
+.pick{display:grid;gap:12px;max-width:420px}
+.pick button{display:flex;align-items:center;justify-content:space-between;gap:16px;font:inherit;font-size:clamp(22px,2.4vw,30px);font-weight:600;color:var(--on-dark);background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:20px;padding:18px 24px;cursor:pointer;text-align:start;transition:background .3s,border-color .3s,transform .3s}
+.pick button[lang="ar"]{font-family:var(--font-ar)}
+.pick button i{width:12px;height:12px;border-radius:50%;background:var(--line-dark);flex:none;transition:background .3s,box-shadow .3s}
+.pick button[aria-pressed="true"]{background:rgba(45,240,200,.18);border-color:var(--lime);transform:translateX(8px)}
+html[dir="rtl"] .pick button[aria-pressed="true"]{transform:translateX(-8px)}
+.pick button[aria-pressed="true"] i{background:var(--mint);box-shadow:0 0 0 6px rgba(127,209,201,.25)}
 
-/* ---------- Footer ---------- */
-footer{padding:48px 0 56px;color:var(--muted);font-size:15px}
-footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:32px}
-footer nav{display:flex;flex-wrap:wrap;gap:8px}
-footer nav a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;border-radius:10px;color:var(--ink);font-weight:500}
-footer nav a:hover{background:var(--teal-soft)}
-footer nav a:first-child{margin-inline-start:-12px}
+/* Final call */
+#get{background:linear-gradient(135deg,#C8FF6B 0%,#2DF0C8 100%);color:#031512;text-align:center;padding-block:120px}
+#get h2{margin-inline:auto;font-size:clamp(36px,5.4vw,76px)}
+#get .lead{color:#0B3A33;margin-inline:auto}
+#get .badges{justify-content:center}
+footer{background:var(--night);border-top:1px solid var(--line-dark);padding-block:40px 56px;color:var(--muted-dark);font-size:15px;position:relative}
+footer .in{display:grid;gap:18px;justify-items:center;text-align:center}
+footer nav{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+footer a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer a:hover{color:var(--on-dark)}
+.dev{margin:0;color:var(--on-dark);font-weight:600;padding:10px 22px;border-radius:999px;border:1px solid var(--line-dark);background:rgba(255,255,255,.05)}
+.dev span{color:var(--muted-dark);font-weight:400}
 
-/* ---------- Responsive ---------- */
-/* Floating chips only where there is room beside the phone */
-@media (max-width:1099px){
-  .chip{display:none}
+/* short laptop windows: keep the whole first screen visible */
+@media (min-width:900px) and (max-height:760px){
+  header .in{height:56px}
+  .hero-grid{height:calc(100vh - 56px - 28px)}
+  .kicker,.trust,.qr-card{display:none}
+  h1{font-size:clamp(30px,8.4vh,60px);margin-bottom:12px}
+  .sub{font-size:clamp(14px,2.6vh,18px);line-height:1.45}
+  .badges{margin-top:16px}
+  .badge-as img{height:42px}.badge-gp img{height:64px;margin:-11px}
+  .chip{padding:8px 12px}.chip b{font-size:17px}.chip small{font-size:12px}
 }
 @media (max-width:899px){
-  .qr-card{display:none}
-  .hero-grid{grid-template-columns:1fr;gap:56px;padding-top:56px;text-align:center}
-  .hero-copy{padding-top:0;padding-bottom:0}
-  /* chips are display:none here, so the phone would auto-place into the first 1fr column */
-  .stage .phone{grid-column:2}
-  .sub{margin-inline:auto}
-  .badges{justify-content:center}
-  .hero::before{height:calc(100% - 260px);border-radius:0 0 50% 50% / 0 0 8% 8%}
-  .features{grid-template-columns:1fr;max-width:560px;margin-inline:auto}
-  h2{margin-bottom:40px}
+  .hero-grid{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto;max-height:none;min-height:calc(100svh - 60px);gap:0;padding-block:16px 12px}
+  .kicker,.trust{display:none}
+  .qr-card,.chip{display:none}
+  #a-hero{height:auto;min-height:36vh}
+  header .in{height:60px}
+  h1,html[lang="ru"] h1{font-size:34px;margin-bottom:10px}
+  .sub{font-size:15px;line-height:1.5}.kicker{margin-bottom:14px;font-size:13px}
+  .badges{margin-top:14px;gap:8px;flex-wrap:nowrap}
+  .badge-as img{height:42px}
+  .badge-gp img{height:64px;margin:-11px}
+  html[lang="ru"] .badge-gp img{height:58px;margin:-8px -1px}
+  #get .badges{flex-wrap:wrap}.trust{font-size:14px}
+  h2{font-size:28px}
+  #features{padding-block:48px 24px}
+  .show{grid-template-columns:1fr;gap:0}
+  #a-show{top:60px;height:36vh;z-index:3;background:#08857A}
+  #features{background:#08857A}
+  .step{min-height:44vh;padding-block:20px}
+  .step h3{font-size:22px;margin-bottom:8px}
+  .step p{font-size:16px}
+  .step .n{margin-bottom:10px}
+  #languages{padding-block:72px}
+  .lang-grid{grid-template-columns:1fr;gap:8px}
+  #a-langs{height:38vh;order:-1}
+  .pick button[aria-pressed="true"]{transform:none}
+  #get{padding-block:80px}
 }
-@media (max-width:640px){
-  .wrap{width:calc(100% - 40px)}
-  .section{padding:72px 0}
-  .privacy{flex-direction:column;align-items:flex-start;padding:24px}
-  .site-header .wrap{height:60px}
-  .brand span{font-size:17px}
-  .lang button{padding:0 8px;font-size:13px}
-}
-@media (max-width:400px){
-  .brand span{display:none}
-}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .chip{animation:none}
-  .phone{transition:none}
-}
+@media (prefers-reduced-motion:reduce){.chip{animation:none}.step{transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="https://walleon.app/" aria-label="Walleon">
-      <img src="assets/walleon-icon-192.png" alt="" width="32" height="32">
-      <span>Walleon</span>
-    </a>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang="ar" lang="ar" aria-pressed="false">العربية</button>
-      <button type="button" data-lang="ru" lang="ru" aria-pressed="false">Русский</button>
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<header><div class="in">
+  <a class="brand" href="#top"><img src="a/walleon-icon-192.png" alt="" width="34" height="34"><span>Walleon</span></a>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" lang="en" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" lang="ar" data-lang="ar" aria-pressed="false">العربية</button>
+    <button type="button" lang="ru" data-lang="ru" aria-pressed="false">Русский</button>
+  </div>
+</div></header>
+
+<main id="top">
+<section id="hero" class="band"><i class="blob b1"></i><i class="blob b2"></i><div class="in"><div class="hero-grid">
+  <div>
+    <p class="kicker rise" data-i18n="kicker">Arabic · Русский · English</p>
+    <h1 class="rise" data-i18n="h1">Your money, in <em>your language.</em></h1>
+    <p class="sub rise d1" data-i18n="sub">A simple expense and budget app made for Arabic and Russian speakers — fully in Arabic (right-to-left), Russian and English.</p>
+    <div class="badges rise d2">
+      <a class="badge-as" href="https://apps.apple.com/us/app/walleon/id6772874528"><img class="as" src="a/appstore-en.svg" alt="Download on the App Store" width="150" height="50"></a>
+      <a class="badge-gp" href="https://play.google.com/store/apps/details?id=com.tarseed.app"><img class="gp" src="a/googleplay-en.png" alt="Get it on Google Play" width="195" height="78"></a>
+    </div>
+    <p class="trust rise d3" data-i18n="trust">Free to download · Your data is never sold</p>
+    <div class="qr-card rise d3">
+      <div class="qr-tile"><img class="qr" src="a/qr-walleon-app.svg" alt="QR code to download Walleon" width="92" height="92"><span class="qr-logo"><img src="a/walleon-icon-192.png" alt=""></span></div>
+      <p class="qr-label" data-i18n="qr">Scan with your phone camera</p>
     </div>
   </div>
-</header>
+  <div class="anchor" id="a-hero">
+    <img class="fb" data-fb="home" src="s/en_home.jpg" alt="Walleon home screen">
+    <div class="chip chip-a"><div><small data-i18n="chip_safe">Safe to spend today</small><b data-i18n="amt1">€139.82</b></div></div>
+    <div class="chip chip-b"><div><small>Internet · <span data-i18n="chip_due">Due tomorrow</span></small><b data-i18n="amt2">€39.99</b></div><span class="pill" data-i18n="chip_paid">Mark paid</span></div>
+  </div>
+</div></div></section>
 
-<main>
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1 id="hero-title" data-i18n="h1">Your money, in your language.</h1>
-        <p class="sub" data-i18n="sub">A simple expense and budget app made for Arabic and Russian speakers — fully in Arabic (right-to-left), Russian and English.</p>
-
-        <div class="badges">
-          <a class="badge-as" href="https://apps.apple.com/us/app/walleon/id6772874528">
-            <img id="as-img" src="assets/appstore-en.svg" alt="Download on the App Store" data-i18n-alt="as_alt" width="150" height="50">
-          </a>
-          <a class="badge-gp" href="https://play.google.com/store/apps/details?id=com.tarseed.app">
-            <img id="gp-img" src="assets/googleplay-en.png" alt="Get it on Google Play" data-i18n-alt="gp_alt" width="202" height="78">
-          </a>
-        </div>
-
-        <div class="qr-card">
-          <div class="qr-tile">
-            <img class="qr" src="assets/qr-walleon-app.svg" alt="QR code to download Walleon" data-i18n-alt="qr_alt" width="104" height="104">
-            <span class="qr-logo" aria-hidden="true"><img src="assets/walleon-icon-192.png" alt=""></span>
-          </div>
-          <p class="qr-label">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3.5"/></svg>
-            <span data-i18n="qr">Scan with your phone camera</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="stage" id="stage">
-        <div class="chip chip-a" aria-hidden="true">
-          <div class="k">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M16 13h2M3 10h18"/></svg>
-            <span data-i18n="chip_budget">Budget</span>
-          </div>
-          <div class="v" data-i18n="chip_used">17% used</div>
-          <div class="bar"><b></b></div>
-        </div>
-
-        <div class="phone" id="phone">
-          <div class="screen">
-            <img src="assets/screens/en/home.jpg" data-screen="home" alt="Walleon home screen: total balance, income, expenses, monthly budget and recent transactions" data-i18n-alt="home_alt" width="660" height="1435">
-          </div>
-        </div>
-
-        <div class="chip chip-b" aria-hidden="true">
-          <div class="chip-row">
-            <span class="ico exp"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
-            <div>
-              <div class="v" style="margin:0" data-i18n="chip_lunch">Expenses</div>
-              <div class="k" data-i18n="chip_food">This month</div>
-            </div>
-          </div>
-          <div class="amt" dir="ltr" style="margin-top:8px;text-align:end">$613.79</div>
-        </div>
-      </div>
+<section id="features" class="band"><div class="in">
+  <p class="eyebrow" data-i18n="eyebrow">Why Walleon</p>
+  <h2 data-i18n="h2">Simple by design. Built for everyday money.</h2>
+  <div class="show">
+    <div class="anchor" id="a-show"><img class="fb" data-fb="home" src="s/en_home.jpg" alt=""></div>
+    <div class="steps" id="steps">
+      <button type="button" class="step on" data-screen="home"><span class="n" data-i18n="t0"></span><h3 data-i18n="f0_t"></h3><p data-i18n="f0_d"></p></button>
+      <button type="button" class="step" data-screen="add"><span class="n" data-i18n="t1"></span><h3 data-i18n="f1_t"></h3><p data-i18n="f1_d"></p></button>
+      <button type="button" class="step" data-screen="wallet"><span class="n" data-i18n="t4"></span><h3 data-i18n="f4_t"></h3><p data-i18n="f4_d"></p></button>
+      <button type="button" class="step" data-screen="budget"><span class="n" data-i18n="t2"></span><h3 data-i18n="f2_t"></h3><p data-i18n="f2_d"></p></button>
+      <button type="button" class="step" data-screen="insights"><span class="n" data-i18n="t3"></span><h3 data-i18n="f3_t"></h3><p data-i18n="f3_d"></p></button>
     </div>
-  </section>
+  </div>
+</div></section>
 
-  <section class="section" aria-labelledby="feat-title">
-    <div class="wrap">
-      <p class="eyebrow" data-i18n="eyebrow">Why Walleon</p>
-      <h2 id="feat-title" data-i18n="h2">Simple by design. Built for everyday money.</h2>
-      <div class="features">
-        <article class="feature">
-          <div class="feature-art"><div class="mini"><div class="screen">
-            <img src="assets/screens/en/add.jpg" data-screen="add" alt="Add Expense screen with category, title, amount and number pad" data-i18n-alt="f1_alt" width="660" height="1435" loading="lazy">
-          </div></div></div>
-          <div class="feature-body">
-            <h3 data-i18n="f1_t">Log expenses in seconds</h3>
-            <p data-i18n="f1_d">Pick a category, type the amount, done. The built-in keypad keeps it to a few taps.</p>
-          </div>
-        </article>
-        <article class="feature">
-          <div class="feature-art"><div class="mini"><div class="screen">
-            <img src="assets/screens/en/budget.jpg" data-screen="budget" alt="Budget screen with an overall budget and per-category progress bars" data-i18n-alt="f2_alt" width="660" height="1435" loading="lazy">
-          </div></div></div>
-          <div class="feature-body">
-            <h3 data-i18n="f2_t">Budgets that warn you early</h3>
-            <p data-i18n="f2_d">Set a monthly budget, overall or per category. Walleon lets you know when you're getting close — before you overspend.</p>
-          </div>
-        </article>
-        <article class="feature">
-          <div class="feature-art"><div class="mini"><div class="screen">
-            <img src="assets/screens/en/stats.jpg" data-screen="stats" alt="Statistics screen showing spending by category" data-i18n-alt="f3_alt" width="660" height="1435" loading="lazy">
-          </div></div></div>
-          <div class="feature-body">
-            <h3 data-i18n="f3_t">See where your money goes</h3>
-            <p data-i18n="f3_d">Balance, income and expenses at a glance — and every transaction is easy to find by category.</p>
-          </div>
-        </article>
-      </div>
+<section id="languages" class="band"><div class="in"><div class="lang-grid">
+  <div>
+    <p class="eyebrow" style="color:var(--mint)" data-i18n="l_eyebrow">Languages</p>
+    <h2 data-i18n="l_t">One app, three languages.</h2>
+    <p class="lead" data-i18n="l_d">Arabic runs fully right-to-left. Switch the language any time.</p>
+    <div class="pick" id="pick">
+      <button type="button" lang="en" data-l="en" aria-pressed="true"><span>English</span><i></i></button>
+      <button type="button" lang="ar" data-l="ar" aria-pressed="false"><span>العربية</span><i></i></button>
+      <button type="button" lang="ru" data-l="ru" aria-pressed="false"><span>Русский</span><i></i></button>
     </div>
-  </section>
+  </div>
+  <div class="anchor" id="a-langs"><img class="fb" data-fb="home" src="s/en_home.jpg" alt=""></div>
+</div></div></section>
 
-  <section aria-label="Privacy" data-i18n-aria="privacy_aria">
-    <div class="wrap">
-      <div class="privacy">
-        <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
-        <p data-i18n="privacy">Your data is synced securely to your private account and never sold.</p>
-      </div>
-    </div>
-  </section>
+<section id="get" class="band"><div class="in">
+  <h2 data-i18n="c_t">Get Walleon</h2>
+  <p class="lead" data-i18n="privacy">Your data is synced securely to your private account and never sold.</p>
+  <div class="badges">
+    <a class="badge-as" href="https://apps.apple.com/us/app/walleon/id6772874528"><img class="as" src="a/appstore-en.svg" alt="Download on the App Store" width="150" height="50"></a>
+    <a class="badge-gp" href="https://play.google.com/store/apps/details?id=com.tarseed.app"><img class="gp" src="a/googleplay-en.png" alt="Get it on Google Play" width="195" height="78"></a>
+  </div>
+</div></section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <nav aria-label="Legal" data-i18n-aria="legal_aria">
-      <a id="l-privacy" href="https://walleon.app/privacy" data-i18n="privacy_link">Privacy</a>
-      <a id="l-terms" href="https://walleon.app/terms" data-i18n="terms_link">Terms</a>
-      <a href="https://walleon.app/support" data-i18n="support_link">Support</a>
-    </nav>
-    <span>© 2026 Walleon</span>
-  </div>
-</footer>
+<footer><div class="in">
+  <nav aria-label="Legal">
+    <a id="l-privacy" href="https://walleon.app/privacy" data-i18n="privacy_link">Privacy</a>
+    <a id="l-terms" href="https://walleon.app/terms" data-i18n="terms_link">Terms</a>
+    <a href="https://walleon.app/support" data-i18n="support_link">Support</a>
+  </nav>
+  <p class="dev"><span data-i18n="dev">Developed by</span> Abdulrahman Mohammed</p>
+  <div>© 2026 Walleon</div>
+</div></footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
-  var T = {
-    en:{
-      h1:"Your money, in your language.",
-      sub:"A simple expense and budget app made for Arabic and Russian speakers — fully in Arabic (right-to-left), Russian and English.",
-      as_alt:"Download on the App Store", gp_alt:"Get it on Google Play",
-      qr:"Scan with your phone camera", qr_alt:"QR code to download Walleon",
-      chip_budget:"Budget", chip_used:"17% used", chip_lunch:"Expenses", chip_food:"This month",
-      home_alt:"Walleon home screen: total balance, income, expenses, monthly budget and recent transactions",
-      eyebrow:"Why Walleon", h2:"Simple by design. Built for everyday money.",
-      f1_t:"Log expenses in seconds", f1_d:"Pick a category, type the amount, done. The built-in keypad keeps it to a few taps.",
-      f1_alt:"Add Expense screen with category, title, amount and number pad",
-      f2_t:"Budgets that warn you early", f2_d:"Set a monthly budget, overall or per category. Walleon lets you know when you're getting close — before you overspend.",
-      f2_alt:"Budget screen with an overall budget and per-category progress bars",
-      f3_t:"See where your money goes", f3_d:"Balance, income and expenses at a glance — and every transaction is easy to find by category.",
-      f3_alt:"Statistics screen showing spending by category",
-      privacy:"Your data is synced securely to your private account and never sold.",
-      privacy_aria:"Privacy", legal_aria:"Legal",
-      privacy_link:"Privacy", terms_link:"Terms", support_link:"Support",
-      title:"Download Walleon — expenses & budgets in Arabic, Russian and English", lang_aria:"Language"
-    },
-    ar:{
-      h1:"أموالك، بلغتك.",
-      sub:"تطبيق بسيط للمصاريف والميزانية، صُمّم لمتحدثي العربية والروسية — بالعربية كاملةً من اليمين إلى اليسار، وبالروسية والإنجليزية.",
-      as_alt:"حمّله من App Store", gp_alt:"احصل عليه من Google Play",
-      qr:"امسح الرمز بكاميرا هاتفك", qr_alt:"رمز QR لتحميل Walleon",
-      chip_budget:"الميزانية", chip_used:"استُخدم 17٪", chip_lunch:"المصروفات", chip_food:"هذا الشهر",
-      home_alt:"الشاشة الرئيسية في Walleon: الرصيد والدخل والمصاريف والميزانية الشهرية وآخر المعاملات",
-      eyebrow:"لماذا Walleon", h2:"بسيط في تصميمه، ومصنوع لمصاريف كل يوم.",
-      f1_t:"سجّل مصاريفك في ثوانٍ", f1_d:"اختر الفئة، واكتب المبلغ، وانتهيت. لوحة الأرقام المدمجة تختصر الأمر في لمسات قليلة.",
-      f1_alt:"شاشة إضافة مصروف فيها الفئة والعنوان والمبلغ ولوحة الأرقام",
-      f2_t:"ميزانيات تنبّهك مبكرًا", f2_d:"حدّد ميزانية شهرية عامة أو لكل فئة، وسينبّهك Walleon حين تقترب من الحد — قبل أن تتجاوزه.",
-      f2_alt:"شاشة الميزانية مع ميزانية عامة وأشرطة تقدّم لكل فئة",
-      f3_t:"اعرف أين تذهب أموالك", f3_d:"الرصيد والدخل والمصاريف في نظرة واحدة، وكل معاملة يسهل الوصول إليها حسب الفئة.",
-      f3_alt:"شاشة الإحصائيات تعرض المصاريف حسب الفئة",
-      privacy:"تُزامَن بياناتك بأمان مع حسابك الخاص، ولا تُباع أبدًا.",
-      privacy_aria:"الخصوصية", legal_aria:"روابط قانونية",
-      privacy_link:"الخصوصية", terms_link:"الشروط", support_link:"الدعم",
-      title:"حمّل Walleon — المصاريف والميزانية بالعربية والروسية والإنجليزية", lang_aria:"اللغة"
-    },
-    ru:{
-      h1:"Ваши деньги — на вашем языке.",
-      sub:"Простое приложение для учёта расходов и бюджета, созданное для тех, кто говорит по-арабски и по-русски. Полностью на арабском (справа налево), русском и английском.",
-      as_alt:"Загрузите в App Store", gp_alt:"Доступно в Google Play",
-      qr:"Наведите камеру телефона на код", qr_alt:"QR-код для загрузки Walleon",
-      chip_budget:"Бюджет", chip_used:"Использовано 17%", chip_lunch:"Расходы", chip_food:"За месяц",
-      home_alt:"Главный экран Walleon: баланс, доходы, расходы, бюджет на месяц и последние операции",
-      eyebrow:"Почему Walleon", h2:"Ничего лишнего. Для повседневных расходов.",
-      f1_t:"Расход — за пару секунд", f1_d:"Выберите категорию, введите сумму — готово. Встроенная клавиатура: всего несколько касаний.",
-      f1_alt:"Экран добавления расхода: категория, название, сумма и цифровая клавиатура",
-      f2_t:"Бюджет, который предупредит заранее", f2_d:"Задайте бюджет на месяц — общий или по категориям. Walleon подскажет, когда вы приближаетесь к лимиту, ещё до перерасхода.",
-      f2_alt:"Экран бюджета: общий бюджет и шкалы по категориям",
-      f3_t:"Видно, куда уходят деньги", f3_d:"Баланс, доходы и расходы — на одном экране, а любую операцию легко найти по категории.",
-      f3_alt:"Экран статистики: расходы по категориям",
-      privacy:"Ваши данные надёжно синхронизируются с вашим личным аккаунтом и никогда не продаются.",
-      privacy_aria:"Конфиденциальность", legal_aria:"Правовая информация",
-      privacy_link:"Конфиденциальность", terms_link:"Условия", support_link:"Поддержка",
-      title:"Скачать Walleon — расходы и бюджет на арабском, русском и английском", lang_aria:"Язык"
-    }
+  var T={
+    en:{kicker:"Made for Arabic and Russian speakers",h1:"Your money, in <em>your language.</em>",
+      sub:"Most money apps treat Arabic and Russian as an afterthought. Walleon speaks your language from the first tap, and tells you the one thing that matters first: how much you can safely spend today.",
+      trust:"Free to download · Your data is never sold",qr:"Scan with your phone camera",chip_safe:"Safe to spend today",chip_due:"Due tomorrow",chip_paid:"Mark paid",amt1:"€139.82",amt2:"€39.99",
+      eyebrow:"Why Walleon",h2:"Month-end should never be a surprise.",
+      t0:"Today",f0_t:"Stop wondering. Know your number.",f0_d:"Open the app and see how much is safe to spend today. No spreadsheets, no maths in your head.",
+      t1:"Add",f1_t:"Logged before you forget.",f1_d:"Type the amount, pick a category, done. If it takes more than a few taps, we got it wrong.",
+      t4:"Bills",f4_t:"See every bill before it surprises you.",f4_d:"All upcoming bills in one list. Paid one? Tap Mark paid. Tapped by mistake? Undo it.",
+      t2:"Budget",f2_t:"A budget that taps your shoulder.",f2_d:"Set one limit for everything or one per category. Walleon warns you as you approach it, while there is still time to adjust.",
+      t3:"Insights",f3_t:"Finally see where it all went.",f3_d:"Balance, income and spending on one screen. Tap a category to see every transaction behind it.",
+      l_eyebrow:"Languages",l_t:"Arabic that reads right. Russian that sounds natural.",l_d:"Right-to-left Arabic, natural Russian and English. Switch any time and your data stays the same.",c_t:"Your money. Your language. Start today.",
+      privacy:"Free to download. Your data stays yours: synced to your private account, never sold.",privacy_link:"Privacy",terms_link:"Terms",support_link:"Support",dev:"Developed by",
+      title:"Download Walleon — expenses & budgets in Arabic, Russian and English"},
+    ar:{kicker:"صُمّم لمتحدثي العربية والروسية",h1:"أموالك، <em>بلغتك.</em>",
+      sub:"معظم تطبيقات المال تتعامل مع العربية والروسية كأمر ثانوي. Walleon يتحدث لغتك من أول لمسة، ويخبرك أولًا بالأهم: كم يمكنك أن تصرف اليوم بأمان.",
+      trust:"مجاني للتحميل · بياناتك لا تُباع أبدًا",qr:"امسح الرمز بكاميرا هاتفك",chip_safe:"الآمن للصرف اليوم",chip_due:"مستحقة غدًا",chip_paid:"تم الدفع",amt1:"SAR 139.82",amt2:"SAR 39.99",
+      eyebrow:"لماذا Walleon",h2:"لا تجعل نهاية الشهر مفاجأة.",
+      t0:"اليوم",f0_t:"كفى حيرة. اعرف رقمك.",f0_d:"افتح التطبيق وشاهد كم تصرف اليوم بأمان. بلا جداول ولا حسابات في رأسك.",
+      t1:"إضافة",f1_t:"سجّله قبل أن تنسى.",f1_d:"اكتب المبلغ، اختر الفئة، وانتهى. وإن احتاج أكثر من لمسات قليلة فنحن المقصّرون.",
+      t4:"الفواتير",f4_t:"شاهد كل فاتورة قبل أن تفاجئك.",f4_d:"كل الفواتير القادمة في قائمة واحدة. دفعت؟ اضغط «تم الدفع». أخطأت؟ تراجع بلمسة.",
+      t2:"الميزانية",f2_t:"ميزانية تنبّهك في الوقت المناسب.",f2_d:"حدّد حدًّا عامًا أو حدًّا لكل فئة. ينبّهك Walleon وأنت تقترب منه، بينما لا يزال الوقت كافيًا للتعديل.",
+      t3:"الإحصائيات",f3_t:"أخيرًا، اعرف أين ذهبت أموالك.",f3_d:"الرصيد والدخل والمصاريف في شاشة واحدة. اضغط على فئة لترى كل معاملة خلفها.",
+      l_eyebrow:"اللغات",l_t:"عربية تُقرأ كما ينبغي. روسية تبدو طبيعية.",l_d:"العربية من اليمين إلى اليسار، والروسية الطبيعية، والإنجليزية. بدّل متى شئت وتبقى بياناتك كما هي.",c_t:"أموالك. لغتك. ابدأ اليوم.",
+      privacy:"مجاني للتحميل. بياناتك ملكك: تُزامَن مع حسابك الخاص ولا تُباع أبدًا.",privacy_link:"الخصوصية",terms_link:"الشروط",support_link:"الدعم",dev:"تطوير",
+      title:"حمّل Walleon — المصاريف والميزانية بالعربية والروسية والإنجليزية"},
+    ru:{kicker:"Создано для арабо- и русскоговорящих",h1:"Ваши деньги — <em>на вашем языке.</em>",
+      sub:"Большинство финансовых приложений относятся к арабскому и русскому как к запасному варианту. Walleon говорит на вашем языке с первого касания и сразу показывает главное: сколько можно безопасно потратить сегодня.",
+      trust:"Скачать бесплатно · Ваши данные не продаются",qr:"Наведите камеру телефона на код",chip_safe:"Доступно на сегодня",chip_due:"Срок завтра",chip_paid:"Оплачено",amt1:"₽139.82",amt2:"₽39.99",
+      eyebrow:"Почему Walleon",h2:"Конец месяца не должен быть сюрпризом.",
+      t0:"Сегодня",f0_t:"Хватит гадать. Узнайте своё число.",f0_d:"Откройте приложение и увидите, сколько можно потратить сегодня. Без таблиц и подсчётов в уме.",
+      t1:"Добавить",f1_t:"Запишите, пока не забыли.",f1_d:"Введите сумму, выберите категорию — готово. Если дольше пары касаний, значит, мы сделали плохо.",
+      t4:"Счета",f4_t:"Увидьте каждый счёт раньше, чем он вас удивит.",f4_d:"Все предстоящие счета в одном списке. Оплатили — нажмите «Оплачено». Ошиблись — отмените.",
+      t2:"Бюджет",f2_t:"Бюджет, который подскажет вовремя.",f2_d:"Задайте один лимит на всё или по категориям. Walleon предупредит, когда вы подходите к нему, пока ещё есть время скорректировать.",
+      t3:"Статистика",f3_t:"Наконец видно, куда всё ушло.",f3_d:"Баланс, доходы и расходы на одном экране. Нажмите на категорию — и увидите все операции за ней.",
+      l_eyebrow:"Языки",l_t:"Арабский, который читается правильно. Русский, который звучит естественно.",l_d:"Арабский справа налево, естественный русский и английский. Меняйте язык когда угодно, данные остаются теми же.",c_t:"Ваши деньги. Ваш язык. Начните сегодня.",
+      privacy:"Скачайте бесплатно. Ваши данные остаются вашими: синхронизация с личным аккаунтом, без продажи.",privacy_link:"Конфиденциальность",terms_link:"Условия",support_link:"Поддержка",dev:"Разработал",
+      title:"Скачать Walleon — расходы и бюджет на арабском, русском и английском"}
   };
-  var root = document.documentElement;
+  var root=document.documentElement, pageLang="en";
+  function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+  function $(s){return document.querySelector(s);}
+  var calm=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Language ---------- */
   function setLang(l){
-    if(!T[l]) l = "en";
-    var d = T[l];
-    root.lang = l; root.dir = l === "ar" ? "rtl" : "ltr";
-    document.title = d.title;
-    document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = d[el.dataset.i18n]; });
-    document.querySelectorAll("[data-i18n-alt]").forEach(function(el){ el.alt = d[el.dataset.i18nAlt]; });
-    document.querySelectorAll("[data-i18n-aria]").forEach(function(el){ el.setAttribute("aria-label", d[el.dataset.i18nAria]); });
-    document.querySelector(".lang").setAttribute("aria-label", d.lang_aria);
-    document.getElementById("gp-img").src = "assets/googleplay-" + l + ".png";
-    /* Apple has no Arabic badge; the English one is the approved fallback */
-    document.getElementById("as-img").src = "assets/appstore-" + (l === "ru" ? "ru" : "en") + ".svg";
-    document.querySelectorAll("img[data-screen]").forEach(function(img){ img.src = "assets/screens/" + l + "/" + img.dataset.screen + ".jpg"; });
-    document.getElementById("l-privacy").href = "https://walleon.app/privacy" + (l === "ar" ? "-ar" : "");
-    document.getElementById("l-terms").href = "https://walleon.app/terms" + (l === "ar" ? "-ar" : "");
-    document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.lang === l ? "true" : "false"); });
-    try{ localStorage.setItem("walleon-lang", l); }catch(e){}
+    if(!T[l])l="en"; pageLang=l; var d=T[l];
+    root.lang=l; root.dir=l==="ar"?"rtl":"ltr"; document.title=d.title;
+    $$("[data-i18n]").forEach(function(e){e.innerHTML=d[e.dataset.i18n];});
+    var gp="a/googleplay-"+l+".png", as="a/appstore-"+(l==="ru"?"ru":"en")+".svg";
+    $$("img.gp").forEach(function(i){i.src=gp;}); $$("img.as").forEach(function(i){i.src=as;});
+    $$("#l-privacy,#l-terms").forEach(function(a){a.href="https://walleon.app/"+(a.id==="l-privacy"?"privacy":"terms")+(l==="ar"?"-ar":"");});
+    $$(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lang===l?"true":"false");});
+    fallback();
   }
-  document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ setLang(b.dataset.lang); }); });
-  var q = new URLSearchParams(location.search).get("lang"), saved = null;
-  try{ saved = localStorage.getItem("walleon-lang"); }catch(e){}
-  var nav = (navigator.language || "en").slice(0,2);
-  setLang(q || saved || (T[nav] ? nav : "en"));
+  $$(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.lang);});});
 
-  /* Tint each status-bar strip with the top row of its screenshot (works same-origin; file:// keeps the CSS fallback) */
-  function tint(img){
-    try{
-      var c = document.createElement("canvas"); c.width = 1; c.height = 1;
-      var x = c.getContext("2d"); x.drawImage(img, 0, 0, img.naturalWidth, 4, 0, 0, 1, 1);
-      var p = x.getImageData(0, 0, 1, 1).data;
-      img.parentNode.style.setProperty("--status", "rgb(" + p[0] + "," + p[1] + "," + p[2] + ")");
-    }catch(e){}
-  }
-  document.querySelectorAll("img[data-screen]").forEach(function(img){
-    img.addEventListener("load", function(){ tint(img); });
-    if(img.complete && img.naturalWidth) tint(img);
-  });
+  /* ---------- Section state ---------- */
+  var heroScreens=["home","wallet","add"], hi=0, li=0, langOrder=["en","ar","ru"], picked=false, section="hero", stepIdx=0;
+  var steps=$$(".step"), pickBtns=$$("#pick button");
+  function setStep(i){kick+=(i>stepIdx?1:-1)*1.2;stepIdx=i;steps.forEach(function(s,k){s.classList.toggle("on",k===i);});}
+  steps.forEach(function(s,i){s.addEventListener("click",function(){setStep(i);});});
+  function setPick(i){li=i;pickBtns.forEach(function(b,k){b.setAttribute("aria-pressed",k===i?"true":"false");});spinOnce();}
+  pickBtns.forEach(function(b,i){b.addEventListener("click",function(){picked=true;setPick(i);});});
 
-  /* Pointer tilt: desktop, fine pointer, no reduced motion. Never scroll-linked. */
-  var phone = document.getElementById("phone"), hero = document.querySelector(".hero");
-  var ok = matchMedia("(hover:hover) and (pointer:fine) and (min-width:900px)").matches &&
-           !matchMedia("(prefers-reduced-motion:reduce)").matches;
-  if(ok){
-    hero.addEventListener("pointermove", function(e){
-      var r = phone.getBoundingClientRect();
-      var x = (e.clientX - (r.left + r.width/2)) / innerWidth;   // -1..1-ish
-      var y = (e.clientY - (r.top + r.height/2)) / innerHeight;
-      var base = root.dir === "rtl" ? 12 : -12;
-      phone.style.setProperty("--ry", (base + x*10).toFixed(2) + "deg");
-      phone.style.setProperty("--rx", (4 - y*8).toFixed(2) + "deg");
-    });
-    hero.addEventListener("pointerleave", function(){ phone.style.removeProperty("--ry"); phone.style.removeProperty("--rx"); });
+  function currentKey(){
+    if(section==="langs")return langOrder[li]+"_home";
+    if(section==="show")return pageLang+"_"+steps[stepIdx].dataset.screen;
+    return pageLang+"_"+heroScreens[hi];
   }
+  function fallback(){ if(!root.classList.contains("nogl"))return;
+    $$("img.fb").forEach(function(i){var a=i.closest(".anchor").id;
+      i.src="s/"+(a==="a-langs"?langOrder[li]:pageLang)+"_"+(a==="a-show"?steps[stepIdx].dataset.screen:i.dataset.fb)+".jpg";}); }
+
+  function detect(){
+    var H=window.innerHeight, mob=window.innerWidth<900, order=[["cta","#get"],["langs","#languages"],["show","#features"]];
+    section="hero";
+    for(var k=0;k<order.length;k++){var r=$(order[k][1]).getBoundingClientRect(); if(r.top<=H*.5){section=order[k][0];break;}}
+    if(section==="show"){
+      var probe=mob?H*.74:H*.5,best=0,bd=1e9;
+      steps.forEach(function(s,i){var r=s.getBoundingClientRect(),d=Math.abs((r.top+r.bottom)/2-probe);if(d<bd){bd=d;best=i;}});
+      if(best!==stepIdx)setStep(best);
+    }
+  }
+
+  /* ---------- 3D phone ---------- */
+  var gl=null;
+  try{
+    if(!window.THREE)throw 0;
+    var canvas=$("#gl"), renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+    renderer.outputEncoding=THREE.sRGBEncoding; renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    gl=true;
+  }catch(e){root.classList.add("nogl");}
+
+  var cur={x:0,y:0,h:0,ry:-.4,rx:.05,spin:-Math.PI*2}, vel={x:0,y:0,h:0,ry:0,rx:0,spin:0}, spinTarget=0, mouse={x:0,y:0}, last=0, first=true, kick=0;
+  var scene,camera,group,screenA,screenB,glow,W=0,H=0,loader,cache={},curKey="",pending=null,fadeStart=0;
+
+  function rr(w,h,r){var s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s;}
+  function plane(w,h,r){var g=new THREE.ShapeGeometry(rr(w,h,r),14),p=g.attributes.position,u=g.attributes.uv;for(var i=0;i<p.count;i++)u.setXY(i,p.getX(i)/w+.5,p.getY(i)/h+.5);return g;}
+  function canvasTex(w,h,draw){var c=document.createElement("canvas");c.width=w;c.height=h;draw(c.getContext("2d"),w,h);return new THREE.CanvasTexture(c);}
+  function getTex(key,cb){
+    var e=cache[key]; if(e&&e.t){cb(e.t);return;}
+    if(!e){e=cache[key]={t:null,cbs:[]};loader.load("s/"+key+".jpg",function(t){t.encoding=THREE.sRGBEncoding;t.anisotropy=8;e.t=t;e.cbs.forEach(function(f){f(t);});e.cbs=[];});}
+    e.cbs.push(cb);
+  }
+
+  if(gl){
+    scene=new THREE.Scene(); camera=new THREE.PerspectiveCamera(30,1,50,6000); loader=new THREE.TextureLoader();
+    scene.add(new THREE.AmbientLight(0xffffff,.75));
+    var k1=new THREE.DirectionalLight(0xffffff,1.1);k1.position.set(-400,500,700);scene.add(k1);
+    var k2=new THREE.DirectionalLight(0x7fd1c9,.9);k2.position.set(500,-300,400);scene.add(k2);
+    group=new THREE.Group(); scene.add(group);
+    var bodyGeo=new THREE.ExtrudeGeometry(rr(478,1018,78),{depth:30,bevelEnabled:true,bevelThickness:6,bevelSize:6,bevelSegments:5,curveSegments:28}); bodyGeo.translate(0,0,-15);
+    var steel=new THREE.MeshStandardMaterial({color:0x2a3532,metalness:.75,roughness:.34});
+    group.add(new THREE.Mesh(bodyGeo,steel));
+    [[-247,200,5,70],[-247,90,5,70],[247,170,5,120]].forEach(function(b){var m=new THREE.Mesh(new THREE.BoxGeometry(b[2],b[3],14),steel);m.position.set(b[0],b[1],0);group.add(m);});
+    var scrGeo=plane(460,1000,62);
+    screenA=new THREE.Mesh(scrGeo,new THREE.MeshBasicMaterial({color:0xffffff,toneMapped:false}));screenA.position.z=21.5;group.add(screenA);
+    screenB=new THREE.Mesh(scrGeo,new THREE.MeshBasicMaterial({color:0xffffff,toneMapped:false,transparent:true,opacity:0}));screenB.position.z=21.8;screenB.visible=false;group.add(screenB);
+    var isl=new THREE.Mesh(plane(128,36,18),new THREE.MeshBasicMaterial({color:0x000000}));isl.position.set(0,462,22.4);group.add(isl);
+    var gloss=new THREE.Mesh(scrGeo,new THREE.MeshBasicMaterial({map:canvasTex(64,128,function(c,w,h){var g=c.createLinearGradient(0,0,w,h);g.addColorStop(0,"rgba(255,255,255,.30)");g.addColorStop(.38,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,.05)");c.fillStyle=g;c.fillRect(0,0,w,h);}),transparent:true,depthWrite:false,toneMapped:false}));gloss.position.z=22.8;group.add(gloss);
+    var back=new THREE.Mesh(plane(478,1018,78),new THREE.MeshStandardMaterial({color:0x10201e,metalness:.5,roughness:.3}));back.position.z=-21.5;back.rotation.y=Math.PI;group.add(back);
+    var logo=new THREE.Mesh(new THREE.PlaneGeometry(130,130),new THREE.MeshBasicMaterial({transparent:true,toneMapped:false}));logo.position.z=-22.5;logo.rotation.y=Math.PI;group.add(logo);
+    loader.load("a/walleon-icon-192.png",function(t){t.encoding=THREE.sRGBEncoding;logo.material.map=t;logo.material.needsUpdate=true;});
+    glow=new THREE.Mesh(new THREE.PlaneGeometry(1700,1700),new THREE.MeshBasicMaterial({map:canvasTex(256,256,function(c,w,h){var g=c.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);g.addColorStop(0,"rgba(127,209,201,.55)");g.addColorStop(.45,"rgba(47,126,121,.18)");g.addColorStop(1,"rgba(47,126,121,0)");c.fillStyle=g;c.fillRect(0,0,w,h);}),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
+    
+  }
+
+  function resize(){W=window.innerWidth;H=window.innerHeight;if(!gl)return;renderer.setSize(W,H,false);camera.aspect=W/H;camera.position.z=(H/2)/Math.tan(15*Math.PI/180);camera.updateProjectionMatrix();}
+  window.addEventListener("resize",resize);
+  window.addEventListener("pointermove",function(e){mouse.x=e.clientX/window.innerWidth*2-1;mouse.y=e.clientY/window.innerHeight*2-1;root.style.setProperty("--mx",mouse.x.toFixed(3));root.style.setProperty("--my",mouse.y.toFixed(3));});
+
+  function setScreen(key){
+    if(!gl||key===curKey)return; curKey=key;
+    getTex(key,function(t){ if(key!==curKey)return;
+      if(!screenA.material.map){screenA.material.map=t;screenA.material.needsUpdate=true;return;}
+      screenB.material.map=t;screenB.material.opacity=0;screenB.material.needsUpdate=true;screenB.visible=true;pending=t;fadeStart=performance.now();});
+  }
+  function spinOnce(){ if(!calm)spinTarget+=Math.PI*2; }
+
+  function target(){
+    var mob=W<900, id=section==="hero"?"#a-hero":section==="show"?"#a-show":section==="langs"?"#a-langs":null;
+    if(!id)return {x:cur.x,y:cur.y-H*.1,h:0,ry:cur.ry,rx:0};
+    var r=$(id).getBoundingClientRect(), h=Math.min(r.height*.96,r.width/.5), cx=r.left+r.width/2-W/2, cy=H/2-(r.top+r.height/2);
+    var ry=Math.abs(cx)<40?(section==="show"&&stepIdx%2?.3:-.3):(cx<0?.38:-.38);
+    return {x:cx,y:cy,h:h,ry:ry,rx:.06};
+  }
+
+  function spring(key,tg,dt,k,d){vel[key]+=(tg-cur[key])*k*dt;vel[key]*=Math.pow(1-d,dt);cur[key]+=vel[key]*dt;}
+  function clamp(v,m){return Math.max(-m,Math.min(m,v));}
+  function frame(now){
+    requestAnimationFrame(frame);
+    detect(); setScreen(currentKey());
+    if(!gl)return;
+    var dt=Math.min(2.5,(now-last)/16.67||1), t=now/1000, tg=target(); last=now;
+    if(first){first=false;cur.x=tg.x;cur.y=tg.y-H*.4;}
+    if(calm){cur.x=tg.x;cur.y=tg.y;cur.h=tg.h;cur.ry=tg.ry;cur.rx=tg.rx;cur.spin=spinTarget;}
+    else if(W<900){spring("x",tg.x,dt,.22,.6);spring("y",tg.y,dt,.22,.6);spring("h",tg.h,dt,.2,.6);spring("ry",tg.ry,dt,.12,.5);spring("rx",tg.rx,dt,.12,.5);spring("spin",spinTarget,dt,.05,.22);}
+    else{spring("x",tg.x,dt,.035,.2);spring("y",tg.y,dt,.035,.2);spring("h",tg.h,dt,.04,.2);spring("ry",tg.ry,dt,.05,.22);spring("rx",tg.rx,dt,.05,.22);spring("spin",spinTarget,dt,.028,.15);}
+    if(pending){var o=Math.min(1,(now-fadeStart)/320);screenB.material.opacity=o;if(o>=1){screenA.material.map=pending;screenA.material.needsUpdate=true;screenB.visible=false;pending=null;}}
+    kick*=Math.pow(.93,dt);
+    var small=W<900, speed=Math.hypot(vel.x,vel.y), boost=small?1:1+Math.min(.16,speed*.012), fl=calm||small?0:Math.sin(t*1.3)*7, m=!small&&!calm?1:0, kk=small?0:1;
+    group.position.set(cur.x,cur.y+fl,0);
+    group.scale.setScalar(Math.max(cur.h*boost,.01)/1030);
+    group.rotation.set(cur.rx+kk*clamp(-vel.y*.006,.3)-mouse.y*.1*m, cur.ry+kk*clamp(vel.x*.01,.5)+mouse.x*.22*m+(calm||small?0:Math.sin(t*.7)*.05)+cur.spin+kk*kick, kk*clamp(-vel.x*.012,.35));
+    renderer.render(scene,camera);
+  }
+
+  /* hero shows a new screen every few seconds, with a full turn; languages cycle until the visitor picks one */
+  setInterval(function(){ if(calm)return;
+    if(section==="hero"){spinOnce();setTimeout(function(){hi=(hi+1)%heroScreens.length;},420);}
+    else if(section==="langs"&&!picked){setPick((li+1)%3);}
+  },4200);
+
+  setLang(new URLSearchParams(location.search).get("lang")||"en");
+  resize(); requestAnimationFrame(frame);
 })();
 </script>
 </body>
